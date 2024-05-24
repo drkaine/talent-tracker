@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.951576">
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.513441">
+      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.513441">
+        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.513441"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Feature" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.438135">
+      <testsuite name="Tests\Feature\ExampleTest" file="tests/Feature/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.438135">
+        <testcase name="it returns a successful response" file="tests/Feature/ExampleTest.php::it returns a successful response" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" assertions="1" time="0.438135"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

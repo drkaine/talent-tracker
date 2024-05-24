@@ -1,0 +1,6 @@
+/home/ubuntu/dev/talent-tracker/tests/Feature/ExampleTest.php
+ [x] it returns a successful response
+
+/home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php
+ [x] that true is true
+
