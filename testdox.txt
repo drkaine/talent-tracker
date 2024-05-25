@@ -1,5 +1,6 @@
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
  [x] Assignment
+ [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php
  [x] that true is true

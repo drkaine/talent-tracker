@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 use App\Models\Assignment;
+use App\Models\Candidate;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
@@ -19,4 +20,17 @@ test('Assignment ', function (): void {
 	$assignment->factory()->create($assignmentData);
 
 	$this->assertDatabaseHas('assignments', $assignmentData);
+});
+
+test('Candidate ', function (): void {
+	$candidateData = [
+		'first_name' => 'Franck',
+		'name' => 'Dubois',
+	];
+
+	$candidate = new Candidate;
+
+	$candidate->factory()->create($candidateData);
+
+	$this->assertDatabaseHas('candidates', $candidateData);
 });

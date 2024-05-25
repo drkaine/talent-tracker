@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="1.928607">
-    <testsuite name="Feature" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="1.869408">
-      <testsuite name="Tests\Feature\ModelTest" file="tests/Feature/ModelTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="1.869408">
-        <testcase name="Assignment" file="tests/Feature/ModelTest.php::Assignment" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="1.869408"/>
+  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="3.312273">
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.904171">
+      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.904171">
+        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.904171"/>
       </testsuite>
     </testsuite>
-    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.059198">
-      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.059198">
-        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.059198"/>
+    <testsuite name="Feature" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="2.408102">
+      <testsuite name="Tests\Feature\ModelTest" file="tests/Feature/ModelTest.php" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="2.408102">
+        <testcase name="Assignment" file="tests/Feature/ModelTest.php::Assignment" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="2.058610"/>
+        <testcase name="Candidate" file="tests/Feature/ModelTest.php::Candidate" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.349492"/>
       </testsuite>
     </testsuite>
   </testsuite>
