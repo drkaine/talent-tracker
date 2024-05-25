@@ -22,6 +22,21 @@ test('Assignment ', function (): void {
 	$this->assertDatabaseHas('assignments', $assignmentData);
 });
 
+test('Assignment with candidate_id at null', function (): void {
+	$assignmentData = [
+		'start_date' => '01/01/2024',
+		'end_date' => '01/01/2025',
+		'title' => 'Mission de test',
+		'candidate_id' => null,
+	];
+
+	$assignment = new Assignment;
+
+	$assignment->factory()->create($assignmentData);
+
+	$this->assertDatabaseHas('assignments', $assignmentData);
+});
+
 test('Candidate ', function (): void {
 	$candidateData = [
 		'first_name' => 'Franck',

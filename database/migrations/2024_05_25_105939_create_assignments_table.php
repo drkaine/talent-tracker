@@ -15,7 +15,7 @@ return new class extends Migration {
 		Schema::create('assignments', function (Blueprint $table): void {
 			$table->id();
 			$table->string('title');
-			$table->integer('candidate_id');
+			$table->integer('candidate_id')->nullable();
 			$table->date('start_date');
 			$table->date('end_date');
 			$table->timestamps();
