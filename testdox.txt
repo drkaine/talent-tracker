@@ -3,8 +3,8 @@
  [x] Delete one candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
- [x] Assignment with data set "(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1"
  [x] Assignment with data set "(['01/01/2024', '01/01/2025', 'Mission de test', …]) #2"
+ [x] Assignment with data set "(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1"
  [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php
