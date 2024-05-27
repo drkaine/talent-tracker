@@ -7,8 +7,11 @@ use App\Models\Candidate;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-test('See all the candidates and their assignments ', function (): void {
+beforeEach(function (): void {
 	Candidate::factory()->count(5)->create();
+});
+
+test('See all the candidates and their assignments ', function (): void {
 	Assignment::factory()->count(5)->create(
 		[
 			'start_date' => '01/01/2024',
@@ -36,8 +39,6 @@ test('See all the candidates and their assignments ', function (): void {
 });
 
 test('Delete one candidate ', function (): void {
-	Candidate::factory()->count(5)->create();
-
 	$candidate = Candidate::where('id', 1)->first()->toArray();
 
 	$response = $this->deleteJson('/api/candidates/delete/1');
