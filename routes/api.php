@@ -13,5 +13,5 @@ Route::get('/user', function (Request $request) {
 Route::get('/candidates', function () {
 	$candidate = new Candidate;
 
-	return $candidate->get();
+	return $candidate->with('assignments')->get();
 });

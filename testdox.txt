@@ -1,5 +1,6 @@
 /home/ubuntu/dev/talent-tracker/tests/Feature/CandidateAPITest.php
  [x] See all the candidates
+ [x] See all the candidates and their assignments
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
  [x] Assignment with data set "(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1"

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="5" assertions="6" errors="0" failures="0" skipped="0" time="1.729065">
-    <testsuite name="Feature" tests="4" assertions="5" errors="0" failures="0" skipped="0" time="1.679718">
-      <testsuite name="Tests\Feature\ModelTest" file="tests/Feature/ModelTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="1.437393">
-        <testcase name="Candidate" file="tests/Feature/ModelTest.php::Candidate" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="1.105553"/>
-        <testsuite name="Tests\Feature\ModelTest::__pest_evaluable_Assignment_" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.331840">
-          <testcase name="Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.167274"/>
-          <testcase name="Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #2&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #2&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.164567"/>
-        </testsuite>
-      </testsuite>
-      <testsuite name="Tests\Feature\CandidateAPITest" file="tests/Feature/CandidateAPITest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.242325">
-        <testcase name="See all the candidates" file="tests/Feature/CandidateAPITest.php::See all the candidates" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="2" time="0.242325"/>
+  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="6" assertions="10" errors="0" failures="0" skipped="0" time="2.007934">
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.394157">
+      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.394157">
+        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.394157"/>
       </testsuite>
     </testsuite>
-    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.049348">
-      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.049348">
-        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.049348"/>
+    <testsuite name="Feature" tests="5" assertions="9" errors="0" failures="0" skipped="0" time="1.613778">
+      <testsuite name="Tests\Feature\ModelTest" file="tests/Feature/ModelTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="1.021768">
+        <testsuite name="Tests\Feature\ModelTest::__pest_evaluable_Assignment_" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.853492">
+          <testcase name="Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.704925"/>
+          <testcase name="Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #2&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #2&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.148568"/>
+        </testsuite>
+        <testcase name="Candidate" file="tests/Feature/ModelTest.php::Candidate" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.168275"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\CandidateAPITest" file="tests/Feature/CandidateAPITest.php" tests="2" assertions="6" errors="0" failures="0" skipped="0" time="0.592010">
+        <testcase name="See all the candidates" file="tests/Feature/CandidateAPITest.php::See all the candidates" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="2" time="0.306791"/>
+        <testcase name="See all the candidates and their assignments" file="tests/Feature/CandidateAPITest.php::See all the candidates and their assignments" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="4" time="0.285219"/>
       </testsuite>
     </testsuite>
   </testsuite>
