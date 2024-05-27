@@ -34,3 +34,16 @@ test('See all the candidates and their assignments ', function (): void {
 	expect(count($response[0]['assignments']))->toBe(5);
 	expect(count($response[1]['assignments']))->toBe(5);
 });
+
+test('Delete one candidate ', function (): void {
+	Candidate::factory()->count(5)->create();
+
+	$candidate = Candidate::where('id', 1)->first()->toArray();
+
+	$response = $this->deleteJson('/api/candidates/delete/1');
+
+	$response->assertStatus(200);
+	$response->assertJson(['message' => 'Candidate deleted successfully.']);
+
+	$this->assertDatabaseMissing('assignments', $candidate);
+});

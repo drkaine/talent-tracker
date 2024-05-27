@@ -15,3 +15,10 @@ Route::get('/candidates', function () {
 
 	return $candidate->with('assignments')->get();
 });
+
+Route::delete('/candidates/delete/{candidate_id}', function (int $candidate_id) {
+	$candidate = new Candidate;
+	$candidate->where('id', $candidate_id)->delete();
+
+	return response()->json(['message' => 'Candidate deleted successfully.'], 200);
+});
