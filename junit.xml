@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="4" assertions="4" errors="0" failures="0" skipped="0" time="2.772516">
-    <testsuite name="Feature" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="2.668593">
-      <testsuite name="Tests\Feature\ModelTest" file="tests/Feature/ModelTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="2.668593">
-        <testcase name="Candidate" file="tests/Feature/ModelTest.php::Candidate" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="2.031453"/>
-        <testcase name="Assignment" file="tests/Feature/ModelTest.php::Assignment" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.390472"/>
-        <testcase name="Assignment with candidate_id at null" file="tests/Feature/ModelTest.php::Assignment with candidate_id at null" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.246668"/>
+  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="4" assertions="4" errors="0" failures="0" skipped="0" time="1.684496">
+    <testsuite name="Feature" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="1.607400">
+      <testsuite name="Tests\Feature\ModelTest" file="tests/Feature/ModelTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="1.607400">
+        <testsuite name="Tests\Feature\ModelTest::__pest_evaluable_Assignment_" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="1.455656">
+          <testcase name="Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #1&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="1.312317"/>
+          <testcase name="Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #2&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;(['01/01/2024', '01/01/2025', 'Mission de test', …]) #2&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.143339"/>
+        </testsuite>
+        <testcase name="Candidate" file="tests/Feature/ModelTest.php::Candidate" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.151744"/>
       </testsuite>
     </testsuite>
-    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.103924">
-      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.103924">
-        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.103924"/>
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.077095">
+      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.077095">
+        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.077095"/>
       </testsuite>
     </testsuite>
   </testsuite>
