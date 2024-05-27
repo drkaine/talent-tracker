@@ -11,17 +11,17 @@ dataset('data for test asssignment model', function () {
 	return [
 		[
 			[
-				'start_date' => '01/01/2024',
-				'end_date' => '01/01/2025',
-				'title' => 'Mission de test',
+				'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
+				'end_date' => fake()->dateTimeBetween('now', '+1 year'),
+				'title' => fake()->word(),
 				'candidate_id' => 1,
 			],
 		],
 		[
 			[
-				'start_date' => '01/01/2024',
-				'end_date' => '01/01/2025',
-				'title' => 'Mission de test',
+				'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
+				'end_date' => fake()->dateTimeBetween('now', '+1 year'),
+				'title' => fake()->word(),
 				'candidate_id' => null,
 			],
 		],
@@ -38,8 +38,8 @@ test('Assignment ', function (array $assignmentData): void {
 
 test('Candidate ', function (): void {
 	$candidateData = [
-		'first_name' => 'Franck',
-		'name' => 'Dubois',
+		'first_name' => fake()->firstName(),
+		'name' => fake()->name(),
 	];
 
 	$candidate = new Candidate;

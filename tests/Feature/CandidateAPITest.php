@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use App\Models\Assignment;
 use App\Models\Candidate;
+use Carbon\Carbon;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
@@ -33,12 +34,12 @@ test('Delete one candidate ', function (): void {
 });
 
 test('See all the candidates who have their assignment who expired ', function (): void {
-	$expiryDate = '2030-01-01';
+	$expiryDate = Carbon::now()->addYears(3);
 
 	Assignment::factory()->create([
-		'start_date' => '01-01-2024',
+		'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
 		'end_date' => $expiryDate,
-		'title' => 'Mission de test',
+		'title' => fake()->word(),
 		'candidate_id' => 1,
 	]);
 
