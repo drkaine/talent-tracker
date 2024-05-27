@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use App\Models\Candidate;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration {
 		Schema::create('assignments', function (Blueprint $table): void {
 			$table->id();
 			$table->string('title');
-			$table->integer('candidate_id')->nullable();
+			$table->foreignIdFor(Candidate::class, 'candidate_id')->nullable();
 			$table->date('start_date');
 			$table->date('end_date');
 			$table->timestamps();
