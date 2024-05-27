@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
 	 */
 	public function run(): void
 	{
+		Candidate::factory(20)->has(Assignment::factory())->count(5)->create();
 		Candidate::factory(20)->create();
-		Assignment::factory(50)->create();
 	}
 }

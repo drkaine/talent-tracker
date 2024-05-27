@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Database\Factories;
 
+use App\Models\Candidate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,7 @@ class AssignmentFactory extends Factory
 			'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
 			'end_date' => fake()->dateTimeBetween('now', '+1 year'),
 			'title' => fake()->word(),
-			'candidate_id' => fake()->randomNumber(1),
+			'candidate_id' => Candidate::factory(),
 		];
 	}
 }

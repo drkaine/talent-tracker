@@ -8,27 +8,10 @@ use App\Models\Candidate;
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 beforeEach(function (): void {
-	Candidate::factory()->count(5)->create();
+	Candidate::factory()->has(Assignment::factory()->count(5), 'assignments')->count(5)->create();
 });
 
 test('See all the candidates and their assignments ', function (): void {
-	Assignment::factory()->count(5)->create(
-		[
-			'start_date' => '01/01/2024',
-			'end_date' => '01/01/2025',
-			'title' => 'Mission de test',
-			'candidate_id' => 1,
-		]
-	);
-	Assignment::factory()->count(5)->create(
-		[
-			'start_date' => '01/01/2024',
-			'end_date' => '01/01/2025',
-			'title' => 'Mission de test',
-			'candidate_id' => 2,
-		]
-	);
-
 	$response = $this->getJson('/api/candidates');
 
 	$response->assertStatus(200);
