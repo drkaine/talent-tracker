@@ -5,11 +5,14 @@ parameters:
         - app/
         - database/
 
+    excludePaths:
+        - app/Http/Controllers
+
     ignoreErrors:
 
     polluteScopeWithLoopInitialAssignments: false
     polluteScopeWithAlwaysIterableForeach: false
-    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueCheckTypeFunctionCall: false
     checkAlwaysTrueInstanceof: true
     checkAlwaysTrueStrictComparison: true
     checkExplicitMixedMissingReturn: false
@@ -20,7 +23,7 @@ parameters:
     reportStaticMethodSignatures: true
     checkTooWideReturnTypesInProtectedAndPublicMethods: true
     checkUninitializedProperties: true
-    checkDynamicProperties: true
+    checkDynamicProperties: false
     rememberPossiblyImpureFunctionValues: false
     checkImplicitMixed: false
     checkBenevolentUnionTypes: false

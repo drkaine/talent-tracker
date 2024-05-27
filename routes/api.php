@@ -12,4 +12,6 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/candidates', [CandidateController::class, 'index']);
 
+Route::get('/candidates/expiring/{expiryDate}', [CandidateController::class, 'show']);
+
 Route::delete('/candidates/delete/{candidate_id}', [CandidateController::class, 'destroy']);

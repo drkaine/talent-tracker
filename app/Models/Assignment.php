@@ -10,4 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 class Assignment extends Model
 {
 	use HasFactory;
+
+	protected $fillable = [
+		'end_date',
+	];
 }

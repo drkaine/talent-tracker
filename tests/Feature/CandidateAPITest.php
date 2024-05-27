@@ -31,3 +31,18 @@ test('Delete one candidate ', function (): void {
 
 	$this->assertDatabaseMissing('assignments', $candidate);
 });
+
+test('See all the candidates who have their assignment who expired ', function (): void {
+	$expiryDate = '2030-01-01';
+
+	Assignment::factory()->create([
+		'start_date' => '01-01-2024',
+		'end_date' => $expiryDate,
+		'title' => 'Mission de test',
+		'candidate_id' => 1,
+	]);
+
+	$response = $this->getJson("/api/candidates/expiring/{$expiryDate}");
+	$response->assertStatus(200);
+	$response->assertJsonCount(1);
+});
