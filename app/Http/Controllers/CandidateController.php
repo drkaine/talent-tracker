@@ -37,6 +37,10 @@ class CandidateController extends Controller
 					$query->whereDate('end_date', '=', $expiryDate);
 				}
 			)->
+			with([
+				'assignments' => function ($query) use ($expiryDate): void {
+					$query->whereDate('end_date', '=', $expiryDate);
+				}])->
 			get();
 
 		return $candidates;

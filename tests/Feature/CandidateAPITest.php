@@ -61,4 +61,5 @@ test('See all the candidates who have their assignment who expired ', function (
 	$response = $this->getJson(URL_BEGIN . "/expiring/{$expiryDate}");
 	$response->assertStatus(SUCESSFULL_STATUT);
 	$response->assertJsonCount(1);
+	expect(count($response[0]['assignments']))->toBe(1);
 });
