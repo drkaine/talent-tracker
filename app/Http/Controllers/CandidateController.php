@@ -4,10 +4,11 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
@@ -19,14 +20,15 @@ class CandidateController extends Controller
 		$this->candidate = new Candidate;
 	}
 
-	public function index(): Collection
+	public function index(): AnonymousResourceCollection
 	{
-		return $this->candidate->
-			with('missions')->
-			get();
+		$candidates = $this->candidate->
+			all();
+
+		return CandidateResource::collection($candidates);
 	}
 
-	public function show(string $expiryDate): Collection
+	public function show(string $expiryDate): AnonymousResourceCollection
 	{
 		$expiryDate = Carbon::parse($expiryDate);
 
@@ -43,7 +45,7 @@ class CandidateController extends Controller
 				}])->
 			get();
 
-		return $candidates;
+		return CandidateResource::collection($candidates);
 	}
 
 	public function destroy(string $candidateId): JsonResponse

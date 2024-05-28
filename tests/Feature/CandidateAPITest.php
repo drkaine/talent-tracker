@@ -26,9 +26,13 @@ test('See all the candidates and their missions ', function (): void {
 	$response = $this->getJson(URL_BEGIN);
 
 	$response->assertStatus(SUCESSFULL_STATUT);
-	$response->assertJsonCount(5);
+	$response->assertJsonCount(5, 'data');
 
-	expect(count($response[0]['missions']))->toBe(5);
+	$responseData = $response->json('data');
+
+	foreach ($responseData as $candidate) {
+		$this->assertCount(5, $candidate['missions']);
+	}
 });
 
 test('Delete one candidate ', function (): void {
@@ -60,6 +64,6 @@ test('See all the candidates who have their mission who expired ', function (): 
 
 	$response = $this->getJson(URL_BEGIN . "/expiring/{$expiryDate}");
 	$response->assertStatus(SUCESSFULL_STATUT);
-	$response->assertJsonCount(1);
-	expect(count($response[0]['missions']))->toBe(1);
+	$response->assertJsonCount(1, 'data');
+	$this->assertCount(1, $response['data'][0]['missions']);
 });
