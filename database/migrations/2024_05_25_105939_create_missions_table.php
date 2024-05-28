@@ -13,7 +13,7 @@ return new class extends Migration {
 	 */
 	public function up(): void
 	{
-		Schema::create('assignments', function (Blueprint $table): void {
+		Schema::create('missions', function (Blueprint $table): void {
 			$table->id();
 			$table->string('title');
 			$table->foreignIdFor(Candidate::class, 'candidate_id')->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration {
 	 */
 	public function down(): void
 	{
-		Schema::dropIfExists('assignments');
+		Schema::dropIfExists('missions');
 	}
 };

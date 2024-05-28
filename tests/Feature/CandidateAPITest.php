@@ -2,8 +2,8 @@
 
 declare(strict_types = 1);
 
-use App\Models\Assignment;
 use App\Models\Candidate;
+use App\Models\Mission;
 use Carbon\Carbon;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
@@ -14,21 +14,21 @@ const URL_BEGIN = '/api/candidates';
 beforeEach(function (): void {
 	Candidate::factory()->
 		has(
-			Assignment::factory()->
+			Mission::factory()->
 				count(5),
-			'assignments'
+			'missions'
 		)->
 		count(5)->
 		create();
 });
 
-test('See all the candidates and their assignments ', function (): void {
+test('See all the candidates and their missions ', function (): void {
 	$response = $this->getJson(URL_BEGIN);
 
 	$response->assertStatus(SUCESSFULL_STATUT);
 	$response->assertJsonCount(5);
 
-	expect(count($response[0]['assignments']))->toBe(5);
+	expect(count($response[0]['missions']))->toBe(5);
 });
 
 test('Delete one candidate ', function (): void {
@@ -43,14 +43,14 @@ test('Delete one candidate ', function (): void {
 		'message' => config('candidate_json_response.delete_success'),
 	]);
 
-	$this->assertDatabaseMissing('assignments', $candidate);
+	$this->assertDatabaseMissing('missions', $candidate);
 });
 
-test('See all the candidates who have their assignment who expired ', function (): void {
+test('See all the candidates who have their mission who expired ', function (): void {
 	$expiryDate = Carbon::now()->
 		addYears(3);
 
-	Assignment::factory()->
+	Mission::factory()->
 		create([
 			'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
 			'end_date' => $expiryDate,
@@ -61,5 +61,5 @@ test('See all the candidates who have their assignment who expired ', function (
 	$response = $this->getJson(URL_BEGIN . "/expiring/{$expiryDate}");
 	$response->assertStatus(SUCESSFULL_STATUT);
 	$response->assertJsonCount(1);
-	expect(count($response[0]['assignments']))->toBe(1);
+	expect(count($response[0]['missions']))->toBe(1);
 });

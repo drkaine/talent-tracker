@@ -1,11 +1,11 @@
 /home/ubuntu/dev/talent-tracker/tests/Feature/CandidateAPITest.php
- [x] See all the candidates and their assignments
+ [x] See all the candidates and their missions
  [x] Delete one candidate
- [x] See all the candidates who have their assignment who expired
+ [x] See all the candidates who have their mission who expired
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
- [x] Assignment with data set "([DateTime, DateTime, 'aliquid', …])"
- [x] Assignment with data set "([DateTime, DateTime, 'accusamus', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'rerum', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'vel', …])"
  [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php

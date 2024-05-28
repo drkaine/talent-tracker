@@ -8,9 +8,9 @@ use App\Models\Candidate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Assignment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Mission>
  */
-class AssignmentFactory extends Factory
+class MissionFactory extends Factory
 {
 	/**
 	 * Define the model's default state.

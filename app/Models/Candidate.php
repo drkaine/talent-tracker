@@ -12,8 +12,8 @@ class Candidate extends Model
 {
 	use HasFactory;
 
-	public function assignments(): HasMany
+	public function missions(): HasMany
 	{
-		return $this->hasMany(Assignment::class);
+		return $this->hasMany(Mission::class);
 	}
 }

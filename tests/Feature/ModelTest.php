@@ -2,8 +2,8 @@
 
 declare(strict_types = 1);
 
-use App\Models\Assignment;
 use App\Models\Candidate;
+use App\Models\Mission;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
@@ -28,12 +28,12 @@ dataset('data for test asssignment model', function () {
 	];
 });
 
-test('Assignment ', function (array $assignmentData): void {
-	$assignment = new Assignment;
+test('Mission ', function (array $missionData): void {
+	$mission = new Mission;
 
-	$assignment->factory()->create($assignmentData);
+	$mission->factory()->create($missionData);
 
-	$this->assertDatabaseHas('assignments', $assignmentData);
+	$this->assertDatabaseHas('missions', $missionData);
 })->with('data for test asssignment model');
 
 test('Candidate ', function (): void {

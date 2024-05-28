@@ -22,7 +22,7 @@ class CandidateController extends Controller
 	public function index(): Collection
 	{
 		return $this->candidate->
-			with('assignments')->
+			with('missions')->
 			get();
 	}
 
@@ -32,13 +32,13 @@ class CandidateController extends Controller
 
 		$candidates = $this->candidate->
 			whereHas(
-				'assignments',
+				'missions',
 				function ($query) use ($expiryDate): void {
 					$query->whereDate('end_date', '=', $expiryDate);
 				}
 			)->
 			with([
-				'assignments' => function ($query) use ($expiryDate): void {
+				'missions' => function ($query) use ($expiryDate): void {
 					$query->whereDate('end_date', '=', $expiryDate);
 				}])->
 			get();
