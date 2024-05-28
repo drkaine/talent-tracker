@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="7" assertions="13" errors="0" failures="0" skipped="0" time="5.352991">
-    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.393885">
-      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.393885">
-        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.393885"/>
+  <testsuite name="/home/ubuntu/dev/talent-tracker/phpunit.xml" tests="7" assertions="12" errors="0" failures="0" skipped="0" time="5.247246">
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.480438">
+      <testsuite name="Tests\Unit\ExampleTest" file="tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.480438">
+        <testcase name="that true is true" file="tests/Unit/ExampleTest.php::that true is true" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.480438"/>
       </testsuite>
     </testsuite>
-    <testsuite name="Feature" tests="6" assertions="12" errors="0" failures="0" skipped="0" time="4.959105">
-      <testsuite name="Tests\Feature\ModelTest" file="tests/Feature/ModelTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="1.564869">
-        <testcase name="Candidate" file="tests/Feature/ModelTest.php::Candidate" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.895890"/>
-        <testsuite name="Tests\Feature\ModelTest::__pest_evaluable_Assignment_" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.668979">
-          <testcase name="Assignment with data set &quot;([DateTime, DateTime, 'qui', …])&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;([DateTime, DateTime, 'qui', …])&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.331322"/>
-          <testcase name="Assignment with data set &quot;([DateTime, DateTime, 'ipsa', …])&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;([DateTime, DateTime, 'ipsa', …])&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.337657"/>
-        </testsuite>
+    <testsuite name="Feature" tests="6" assertions="11" errors="0" failures="0" skipped="0" time="4.766807">
+      <testsuite name="Tests\Feature\CandidateAPITest" file="tests/Feature/CandidateAPITest.php" tests="3" assertions="8" errors="0" failures="0" skipped="0" time="3.037094">
+        <testcase name="Delete one candidate" file="tests/Feature/CandidateAPITest.php::Delete one candidate" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="3" time="1.267949"/>
+        <testcase name="See all the candidates and their assignments" file="tests/Feature/CandidateAPITest.php::See all the candidates and their assignments" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="3" time="0.841630"/>
+        <testcase name="See all the candidates who have their assignment who expired" file="tests/Feature/CandidateAPITest.php::See all the candidates who have their assignment who expired" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="2" time="0.927514"/>
       </testsuite>
-      <testsuite name="Tests\Feature\CandidateAPITest" file="tests/Feature/CandidateAPITest.php" tests="3" assertions="9" errors="0" failures="0" skipped="0" time="3.394236">
-        <testcase name="See all the candidates and their assignments" file="tests/Feature/CandidateAPITest.php::See all the candidates and their assignments" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="4" time="1.113353"/>
-        <testcase name="Delete one candidate" file="tests/Feature/CandidateAPITest.php::Delete one candidate" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="3" time="1.094205"/>
-        <testcase name="See all the candidates who have their assignment who expired" file="tests/Feature/CandidateAPITest.php::See all the candidates who have their assignment who expired" class="Tests\Feature\CandidateAPITest" classname="Tests.Feature.CandidateAPITest" assertions="2" time="1.186678"/>
+      <testsuite name="Tests\Feature\ModelTest" file="tests/Feature/ModelTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="1.729714">
+        <testsuite name="Tests\Feature\ModelTest::__pest_evaluable_Assignment_" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="1.149613">
+          <testcase name="Assignment with data set &quot;([DateTime, DateTime, 'est', …]) #2&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;([DateTime, DateTime, 'est', …]) #2&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.586651"/>
+          <testcase name="Assignment with data set &quot;([DateTime, DateTime, 'est', …]) #1&quot;" file="tests/Feature/ModelTest.php::Assignment with data set &quot;([DateTime, DateTime, 'est', …]) #1&quot;" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.562962"/>
+        </testsuite>
+        <testcase name="Candidate" file="tests/Feature/ModelTest.php::Candidate" class="Tests\Feature\ModelTest" classname="Tests.Feature.ModelTest" assertions="1" time="0.580100"/>
       </testsuite>
     </testsuite>
   </testsuite>

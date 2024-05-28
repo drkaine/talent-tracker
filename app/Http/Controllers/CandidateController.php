@@ -12,30 +12,48 @@ use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
 {
+	private Candidate $candidate;
+
+	public function __construct()
+	{
+		$this->candidate = new Candidate;
+	}
+
 	public function index(): Collection
 	{
-		$candidate = new Candidate;
-
-		return $candidate->with('assignments')->get();
+		return $this->candidate->
+			with('assignments')->
+			get();
 	}
 
 	public function show(string $expiryDate): Collection
 	{
-		$candidate = new Candidate;
+		$expiryDate = Carbon::parse($expiryDate);
 
-		$expiry_date = Carbon::parse($expiryDate);
-
-		$candidates = $candidate->whereHas('assignments', function ($query) use ($expiry_date): void {
-			$query->whereDate('end_date', '=', $expiry_date);
-		})->get();
+		$candidates = $this->candidate->
+			whereHas(
+				'assignments',
+				function ($query) use ($expiryDate): void {
+					$query->whereDate('end_date', '=', $expiryDate);
+				}
+			)->
+			get();
 
 		return $candidates;
 	}
 
-	public function destroy(string $candidate_id): JsonResponse
+	public function destroy(string $candidateId): JsonResponse
 	{
-		DB::table('candidates')->where('id', $candidate_id)->delete();
+		DB::table('candidates')->
+			where('id', $candidateId)->
+			delete();
 
-		return response()->json(['message' => 'Candidate deleted successfully.'], 200);
+		return response()->
+			json(
+				[
+					'message' => config('candidate_json_response.delete_success'),
+				],
+				200
+			);
 	}
 }
