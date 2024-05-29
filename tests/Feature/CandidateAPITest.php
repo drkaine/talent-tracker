@@ -42,12 +42,15 @@ test('Delete one candidate ', function (): void {
 
 	$response = $this->deleteJson(URL_BEGIN . '/delete/1');
 
+	$candidateMissions = Mission::where('candidate_id', 1)->get();
+
 	$response->assertStatus(SUCESSFULL_STATUT);
 	$response->assertJson([
 		'message' => config('candidate_json_response.delete_success'),
 	]);
 
 	$this->assertDatabaseMissing('missions', $candidate);
+	expect(count($candidateMissions))->toBe(0);
 });
 
 test('See all the candidates who have their mission who expired ', function (): void {

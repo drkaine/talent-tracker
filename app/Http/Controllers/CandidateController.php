@@ -54,6 +54,10 @@ class CandidateController extends Controller
 			where('id', $candidateId)->
 			delete();
 
+		DB::table('missions')->
+			where('candidate_id', $candidateId)->
+			delete();
+
 		return response()->
 			json(
 				[

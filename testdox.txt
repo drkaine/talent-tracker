@@ -4,8 +4,8 @@
  [x] See all the candidates who have their mission who expired
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
- [x] Mission with data set "([DateTime, DateTime, 'a', …])"
- [x] Mission with data set "([DateTime, DateTime, 'suscipit', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'fugit', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'voluptates', …])"
  [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php
