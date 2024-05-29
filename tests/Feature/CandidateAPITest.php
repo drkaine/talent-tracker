@@ -100,6 +100,47 @@ test('Create one candidate ', function (): void {
 	$this->assertDatabaseHas('candidates', $newCandidateData);
 });
 
+dataset('Wrong data for create', function () {
+	return [
+		[
+			'data' => [
+				'first_name' => fake()->firstName(),
+				'name' => 1,
+			],
+		],
+		[
+			'data' => [
+				'first_name' => 1,
+				'name' => fake()->name(),
+			],
+		],
+		[
+			'data' => [
+				'first_name' => '012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
+				'name' => fake()->name(),
+			],
+		],
+		[
+			'data' => [
+				'first_name' => fake()->firstName(),
+				'name' => '012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
+			],
+		],
+		[
+			'data' => [
+			],
+		],
+		[
+			'first_name' => [],
+			'name' => fake()->name(),
+		],
+		[
+			'first_name' => fake()->firstName(),
+			'name' => [],
+		],
+	];
+});
+
 test('Try create one candidate with wrong information ', function (): void {
 	$newCandidateData = [
 		'first_name' => 1,
@@ -113,7 +154,7 @@ test('Try create one candidate with wrong information ', function (): void {
 	$response->assertJson([
 		'message' => config('candidate_json_response.create_error_data'),
 	]);
-});
+})->with('Wrong data for create');
 
 test('Modify one candidate ', function (): void {
 	$updateCandidateData = [
