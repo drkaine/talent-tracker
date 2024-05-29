@@ -66,6 +66,24 @@ class CandidateController extends Controller
 		return CandidateResource::collection($candidates);
 	}
 
+	public function update(Request $request, string $candidateId): JsonResponse
+	{
+		$this->candidate->
+			where('id', $candidateId)->
+			update([
+				'first_name' => $request->candidate['first_name'],
+				'name' => $request->candidate['name'],
+			]);
+
+		return response()->
+			json(
+				[
+					'message' => config('candidate_json_response.update_success'),
+				],
+				config('request_statut.sucessfull_statut')
+			);
+	}
+
 	public function destroy(string $candidateId): JsonResponse
 	{
 		$isDelete = DB::table('candidates')->

@@ -96,3 +96,19 @@ test('Create one candidate ', function (): void {
 
 	$this->assertDatabaseHas('candidates', $newCandidateData);
 });
+
+test('Modify one candidate ', function (): void {
+	$updateCandidateData = [
+		'first_name' => fake()->firstName(),
+		'name' => fake()->name(),
+	];
+
+	$response = $this->patchJson(URL_BEGIN . '/update/' . CANDIDATE_ID, ['candidate' => $updateCandidateData]);
+
+	$response->assertStatus(config('request_statut.sucessfull_statut'));
+	$response->assertJson([
+		'message' => config('candidate_json_response.update_success'),
+	]);
+
+	$this->assertDatabaseHas('candidates', $updateCandidateData);
+});

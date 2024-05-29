@@ -16,4 +16,6 @@ Route::get('/candidates/expiring/{expiryDate}', [CandidateController::class, 'sh
 
 Route::post('/candidates/create', [CandidateController::class, 'create']);
 
+Route::patch('/candidates/update/{candidateId}', [CandidateController::class, 'update']);
+
 Route::delete('/candidates/delete/{candidateId}', [CandidateController::class, 'destroy']);
