@@ -100,6 +100,21 @@ test('Create one candidate ', function (): void {
 	$this->assertDatabaseHas('candidates', $newCandidateData);
 });
 
+test('Try create one candidate with wrong information ', function (): void {
+	$newCandidateData = [
+		'first_name' => 1,
+		'name' => 1,
+	];
+
+	$response = $this->postJson(URL_BEGIN . '/create', [
+		$newCandidateData]);
+
+	$response->assertStatus(config('response_status.unprocessable_status'));
+	$response->assertJson([
+		'message' => config('candidate_json_response.create_error_data'),
+	]);
+});
+
 test('Modify one candidate ', function (): void {
 	$updateCandidateData = [
 		'first_name' => fake()->firstName(),

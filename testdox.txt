@@ -4,12 +4,13 @@
  [x] Try delete a candidate with negative id
  [x] See all the candidates who have their mission who expired
  [x] Create one candidate
+ [x] Try create one candidate with wrong information
  [x] Modify one candidate
  [x] Try modify one candidate with negative id
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
- [x] Mission with data set "([DateTime, DateTime, 'deleniti', …])"
- [x] Mission with data set "([DateTime, DateTime, 'perferendis', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'dolorem', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'magnam', …])"
  [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php

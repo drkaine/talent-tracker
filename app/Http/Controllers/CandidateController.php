@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CandidateController extends Controller
 {
@@ -34,6 +35,19 @@ class CandidateController extends Controller
 
 	public function create(Request $request): JsonResponse
 	{
+		$validator = Validator::make($request->all(), [
+			'candidate' => 'required',
+			'candidate.first_name' => 'string|max:255',
+			'candidate.name' => 'string|max:255',
+		]);
+
+		if ($validator->fails()) {
+			return $this->JsonResponseBuilder(
+				config('candidate_json_response.create_error_data'),
+				config('response_status.unprocessable_status')
+			);
+		}
+
 		$this->candidate->
 			create([
 				'first_name' => $request->candidate['first_name'],
