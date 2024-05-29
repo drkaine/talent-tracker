@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
+use App\Traits\JsonResponseTrait;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
 {
+	use JsonResponseTrait;
+
 	private Candidate $candidate;
 
 	public function __construct()
@@ -37,13 +40,10 @@ class CandidateController extends Controller
 				'name' => $request->candidate['name'],
 			]);
 
-		return response()->
-			json(
-				[
-					'message' => config('candidate_json_response.create_success'),
-				],
-				config('request_statut.sucessfull_statut')
-			);
+		return $this->JsonResponseBuilder(
+			config('candidate_json_response.create_success'),
+			config('response_status.sucessfull_status')
+		);
 	}
 
 	public function show(string $expiryDate): AnonymousResourceCollection
@@ -76,22 +76,16 @@ class CandidateController extends Controller
 			]);
 
 		if (!$isUpdate) {
-			return response()->
-				json(
-					[
-						'message' => config('candidate_json_response.update_error'),
-					],
-					config('request_statut.not_found_statut')
-				);
+			return $this->JsonResponseBuilder(
+				config('candidate_json_response.update_error'),
+				config('response_status.not_found_status')
+			);
 		}
 
-		return response()->
-			json(
-				[
-					'message' => config('candidate_json_response.update_success'),
-				],
-				config('request_statut.sucessfull_statut')
-			);
+		return $this->JsonResponseBuilder(
+			config('candidate_json_response.update_success'),
+			config('response_status.sucessfull_status')
+		);
 	}
 
 	public function destroy(string $candidateId): JsonResponse
@@ -101,25 +95,19 @@ class CandidateController extends Controller
 			delete();
 
 		if (!$isDelete) {
-			return response()->
-				json(
-					[
-						'message' => config('candidate_json_response.delete_error'),
-					],
-					config('request_statut.not_found_statut')
-				);
+			return $this->JsonResponseBuilder(
+				config('candidate_json_response.delete_error'),
+				config('response_status.not_found_status')
+			);
 		}
 
 		DB::table('missions')->
 			where('candidate_id', $candidateId)->
 			delete();
 
-		return response()->
-			json(
-				[
-					'message' => config('candidate_json_response.delete_success'),
-				],
-				config('request_statut.sucessfull_statut')
-			);
+		return $this->JsonResponseBuilder(
+			config('candidate_json_response.delete_success'),
+			config('response_status.sucessfull_status')
+		);
 	}
 }
