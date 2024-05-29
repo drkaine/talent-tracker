@@ -15,10 +15,10 @@ beforeEach(function (): void {
 	Candidate::factory()->
 		has(
 			Mission::factory()->
-				count(5),
+				count(2),
 			'missions'
 		)->
-		count(5)->
+		count(2)->
 		create();
 });
 
@@ -26,12 +26,12 @@ test('See all the candidates and their missions ', function (): void {
 	$response = $this->getJson(URL_BEGIN);
 
 	$response->assertStatus(config('request_statut.sucessfull_statut'));
-	$response->assertJsonCount(5, 'data');
+	$response->assertJsonCount(2, 'data');
 
 	$responseData = $response->json('data');
 
 	foreach ($responseData as $candidate) {
-		$this->assertCount(5, $candidate['missions']);
+		$this->assertCount(2, $candidate['missions']);
 	}
 });
 
@@ -111,4 +111,20 @@ test('Modify one candidate ', function (): void {
 	]);
 
 	$this->assertDatabaseHas('candidates', $updateCandidateData);
+});
+
+test('Try modify one candidate with negative id ', function (): void {
+	$updateCandidateData = [
+		'first_name' => fake()->firstName(),
+		'name' => fake()->name(),
+	];
+
+	$response = $this->patchJson(URL_BEGIN . '/update/-1', ['candidate' => $updateCandidateData]);
+
+	$response->assertStatus(config('request_statut.not_found_statut'));
+	$response->assertJson([
+		'message' => config('candidate_json_response.update_error'),
+	]);
+
+	$this->assertDatabaseMissing('candidates', $updateCandidateData);
 });

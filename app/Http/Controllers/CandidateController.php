@@ -68,12 +68,22 @@ class CandidateController extends Controller
 
 	public function update(Request $request, string $candidateId): JsonResponse
 	{
-		$this->candidate->
+		$isUpdate = $this->candidate->
 			where('id', $candidateId)->
 			update([
 				'first_name' => $request->candidate['first_name'],
 				'name' => $request->candidate['name'],
 			]);
+
+		if (!$isUpdate) {
+			return response()->
+				json(
+					[
+						'message' => config('candidate_json_response.update_error'),
+					],
+					config('request_statut.not_found_statut')
+				);
+		}
 
 		return response()->
 			json(

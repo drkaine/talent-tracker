@@ -6,5 +6,6 @@ return [
 	'delete_success' => 'Candidate deleted successfully.',
 	'delete_error' => 'Candidate not found.',
 	'create_success' => 'Candidate created successfully.',
-	'create_success' => 'Candidate updated successfully.',
+	'update_success' => 'Candidate updated successfully.',
+	'update_error' => 'Candidate not found.',
 ];
