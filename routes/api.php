@@ -14,4 +14,6 @@ Route::get('/candidates', [CandidateController::class, 'index']);
 
 Route::get('/candidates/expiring/{expiryDate}', [CandidateController::class, 'show']);
 
+Route::post('/candidates/create', [CandidateController::class, 'create']);
+
 Route::delete('/candidates/delete/{candidateId}', [CandidateController::class, 'destroy']);

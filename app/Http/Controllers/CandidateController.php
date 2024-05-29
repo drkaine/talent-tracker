@@ -8,6 +8,7 @@ use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,23 @@ class CandidateController extends Controller
 			all();
 
 		return CandidateResource::collection($candidates);
+	}
+
+	public function create(Request $request): JsonResponse
+	{
+		$this->candidate->
+			create([
+				'first_name' => $request->candidate['first_name'],
+				'name' => $request->candidate['name'],
+			]);
+
+		return response()->
+			json(
+				[
+					'message' => config('candidate_json_response.create_success'),
+				],
+				200
+			);
 	}
 
 	public function show(string $expiryDate): AnonymousResourceCollection

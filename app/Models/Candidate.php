@@ -12,6 +12,11 @@ class Candidate extends Model
 {
 	use HasFactory;
 
+	protected $fillable = [
+		'first_name',
+		'name',
+	];
+
 	public function missions(): HasMany
 	{
 		return $this->hasMany(Mission::class);

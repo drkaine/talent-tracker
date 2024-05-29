@@ -70,3 +70,19 @@ test('See all the candidates who have their mission who expired ', function (): 
 	$response->assertJsonCount(1, 'data');
 	$this->assertCount(1, $response['data'][0]['missions']);
 });
+
+test('Create one candidate ', function (): void {
+	$newCandidateData = [
+		'first_name' => fake()->firstName(),
+		'name' => fake()->name(),
+	];
+
+	$response = $this->postJson(URL_BEGIN . '/create', ['candidate' => $newCandidateData]);
+
+	$response->assertStatus(SUCESSFULL_STATUT);
+	$response->assertJson([
+		'message' => config('candidate_json_response.create_success'),
+	]);
+
+	$this->assertDatabaseHas('candidates', $newCandidateData);
+});
