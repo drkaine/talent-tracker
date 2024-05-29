@@ -42,7 +42,7 @@ class CandidateController extends Controller
 				[
 					'message' => config('candidate_json_response.create_success'),
 				],
-				200
+				config('request_statut.sucessfull_statut')
 			);
 	}
 
@@ -78,7 +78,7 @@ class CandidateController extends Controller
 					[
 						'message' => config('candidate_json_response.delete_error'),
 					],
-					404
+					config('request_statut.not_found_statut')
 				);
 		}
 
@@ -91,7 +91,7 @@ class CandidateController extends Controller
 				[
 					'message' => config('candidate_json_response.delete_success'),
 				],
-				200
+				config('request_statut.sucessfull_statut')
 			);
 	}
 }

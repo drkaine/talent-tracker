@@ -8,8 +8,8 @@ use Carbon\Carbon;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-const SUCESSFULL_STATUT = 200;
 const URL_BEGIN = '/api/candidates';
+const CANDIDATE_ID = 1;
 
 beforeEach(function (): void {
 	Candidate::factory()->
@@ -25,7 +25,7 @@ beforeEach(function (): void {
 test('See all the candidates and their missions ', function (): void {
 	$response = $this->getJson(URL_BEGIN);
 
-	$response->assertStatus(SUCESSFULL_STATUT);
+	$response->assertStatus(config('request_statut.sucessfull_statut'));
 	$response->assertJsonCount(5, 'data');
 
 	$responseData = $response->json('data');
@@ -36,15 +36,16 @@ test('See all the candidates and their missions ', function (): void {
 });
 
 test('Delete one candidate ', function (): void {
-	$candidate = Candidate::where('id', 1)->
+
+	$candidate = Candidate::where('id', CANDIDATE_ID)->
 		first()->
 		toArray();
 
-	$response = $this->deleteJson(URL_BEGIN . '/delete/1');
+	$response = $this->deleteJson(URL_BEGIN . '/delete/' . CANDIDATE_ID);
 
-	$candidateMissions = Mission::where('candidate_id', 1)->get();
+	$candidateMissions = Mission::where('candidate_id', CANDIDATE_ID)->get();
 
-	$response->assertStatus(SUCESSFULL_STATUT);
+	$response->assertStatus(config('request_statut.sucessfull_statut'));
 	$response->assertJson([
 		'message' => config('candidate_json_response.delete_success'),
 	]);
@@ -56,7 +57,7 @@ test('Delete one candidate ', function (): void {
 test('Try delete a candidate with negative id ', function (): void {
 	$response = $this->deleteJson(URL_BEGIN . '/delete/-1');
 
-	$response->assertStatus(404);
+	$response->assertStatus(config('request_statut.not_found_statut'));
 	$response->assertJson([
 		'message' => config('candidate_json_response.delete_error'),
 	]);
@@ -71,11 +72,11 @@ test('See all the candidates who have their mission who expired ', function (): 
 			'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
 			'end_date' => $expiryDate,
 			'title' => fake()->word(),
-			'candidate_id' => 1,
+			'candidate_id' => CANDIDATE_ID,
 		]);
 
 	$response = $this->getJson(URL_BEGIN . "/expiring/{$expiryDate}");
-	$response->assertStatus(SUCESSFULL_STATUT);
+	$response->assertStatus(config('request_statut.sucessfull_statut'));
 	$response->assertJsonCount(1, 'data');
 	$this->assertCount(1, $response['data'][0]['missions']);
 });
@@ -88,7 +89,7 @@ test('Create one candidate ', function (): void {
 
 	$response = $this->postJson(URL_BEGIN . '/create', ['candidate' => $newCandidateData]);
 
-	$response->assertStatus(SUCESSFULL_STATUT);
+	$response->assertStatus(config('request_statut.sucessfull_statut'));
 	$response->assertJson([
 		'message' => config('candidate_json_response.create_success'),
 	]);
