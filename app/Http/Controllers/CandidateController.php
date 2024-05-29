@@ -68,9 +68,19 @@ class CandidateController extends Controller
 
 	public function destroy(string $candidateId): JsonResponse
 	{
-		DB::table('candidates')->
+		$isDelete = DB::table('candidates')->
 			where('id', $candidateId)->
 			delete();
+
+		if (!$isDelete) {
+			return response()->
+				json(
+					[
+						'message' => config('candidate_json_response.delete_error'),
+					],
+					404
+				);
+		}
 
 		DB::table('missions')->
 			where('candidate_id', $candidateId)->

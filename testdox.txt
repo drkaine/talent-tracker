@@ -1,12 +1,13 @@
 /home/ubuntu/dev/talent-tracker/tests/Feature/CandidateAPITest.php
  [x] See all the candidates and their missions
  [x] Delete one candidate
+ [x] Try delete a candidate with negative id
  [x] See all the candidates who have their mission who expired
  [x] Create one candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
- [x] Mission with data set "([DateTime, DateTime, 'quod', …])"
- [x] Mission with data set "([DateTime, DateTime, 'corporis', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'eum', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'omnis', …])"
  [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php

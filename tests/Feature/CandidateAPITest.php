@@ -53,6 +53,15 @@ test('Delete one candidate ', function (): void {
 	expect(count($candidateMissions))->toBe(0);
 });
 
+test('Try delete a candidate with negative id ', function (): void {
+	$response = $this->deleteJson(URL_BEGIN . '/delete/-1');
+
+	$response->assertStatus(404);
+	$response->assertJson([
+		'message' => config('candidate_json_response.delete_error'),
+	]);
+});
+
 test('See all the candidates who have their mission who expired ', function (): void {
 	$expiryDate = Carbon::now()->
 		addYears(3);
