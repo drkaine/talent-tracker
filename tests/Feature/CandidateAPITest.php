@@ -104,12 +104,7 @@ dataset('Case of error', function () {
 	return require './tests/dataset/CreateCandidate.php';
 });
 
-test('Try create one candidate with wrong information ', function (): void {
-	$newCandidateData = [
-		'first_name' => 1,
-		'name' => 1,
-	];
-
+test('Try create one candidate with wrong information ', function (array $newCandidateData): void {
 	$response = $this->postJson(URL_BEGIN . '/create', [
 		$newCandidateData]);
 

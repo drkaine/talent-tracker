@@ -32,11 +32,15 @@ return [
 		],
 	],
 	[
-		'first_name' => [],
-		'name' => fake()->name(),
+		[
+			'first_name' => [],
+			'name' => fake()->name(),
+		],
 	],
 	[
-		'first_name' => fake()->firstName(),
-		'name' => [],
+		[
+			'first_name' => fake()->firstName(),
+			'name' => [],
+		],
 	],
 ];
