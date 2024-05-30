@@ -12,6 +12,9 @@ class Mission extends Model
 	use HasFactory;
 
 	protected $fillable = [
+		'start_date',
+		'title',
+		'candidate_id',
 		'end_date',
 	];
 }

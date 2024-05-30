@@ -9,8 +9,7 @@ use App\Models\Mission;
 use Carbon\Carbon;
 
 uses(
-	Illuminate\Foundation\Testing\RefreshDatabase::class,
-	App\Traits\JsonResponseTrait::class
+	Illuminate\Foundation\Testing\RefreshDatabase::class
 );
 
 const URL_BEGIN = '/api/candidates';
