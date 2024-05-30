@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
+use App\Enums\JsonResponse as EnumsJsonResponse;
+use App\Enums\JsonStatus;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
 use App\Traits\JsonResponseTrait;
@@ -43,8 +45,8 @@ class CandidateController extends Controller
 
 		if ($validator->fails()) {
 			return $this->JsonResponseBuilder(
-				config('candidate_json_response.create_error_data'),
-				config('response_status.unprocessable_status')
+				EnumsJsonResponse::CREATE_ERROR->value,
+				JsonStatus::UNPROCESSABLE->value
 			);
 		}
 
@@ -55,8 +57,8 @@ class CandidateController extends Controller
 			]);
 
 		return $this->JsonResponseBuilder(
-			config('candidate_json_response.create_success'),
-			config('response_status.sucessfull_status')
+			EnumsJsonResponse::CREATE_SUCCESS->value,
+			JsonStatus::SUCCESS->value
 		);
 	}
 
@@ -91,14 +93,14 @@ class CandidateController extends Controller
 
 		if (!$isUpdate) {
 			return $this->JsonResponseBuilder(
-				config('candidate_json_response.update_error'),
-				config('response_status.not_found_status')
+				EnumsJsonResponse::NOT_FOUND->value,
+				JsonStatus::NOT_FOUND->value
 			);
 		}
 
 		return $this->JsonResponseBuilder(
-			config('candidate_json_response.update_success'),
-			config('response_status.sucessfull_status')
+			EnumsJsonResponse::UPDATE_SUCCESS->value,
+			JsonStatus::SUCCESS->value
 		);
 	}
 
@@ -110,8 +112,8 @@ class CandidateController extends Controller
 
 		if (!$isDelete) {
 			return $this->JsonResponseBuilder(
-				config('candidate_json_response.delete_error'),
-				config('response_status.not_found_status')
+				EnumsJsonResponse::NOT_FOUND->value,
+				JsonStatus::NOT_FOUND->value
 			);
 		}
 
@@ -120,8 +122,8 @@ class CandidateController extends Controller
 			delete();
 
 		return $this->JsonResponseBuilder(
-			config('candidate_json_response.delete_success'),
-			config('response_status.sucessfull_status')
+			EnumsJsonResponse::DELETE_SUCCESS->value,
+			JsonStatus::SUCCESS->value
 		);
 	}
 }

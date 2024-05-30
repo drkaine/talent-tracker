@@ -2,6 +2,8 @@
 
 declare(strict_types = 1);
 
+use App\Enums\JsonResponse;
+use App\Enums\JsonStatus;
 use App\Models\Candidate;
 use App\Models\Mission;
 use Carbon\Carbon;
@@ -13,6 +15,7 @@ uses(
 
 const URL_BEGIN = '/api/candidates';
 const CANDIDATE_ID = 1;
+const NEGATIVE_CANDIDATE_ID = -1;
 
 beforeEach(function (): void {
 	Candidate::factory()->
@@ -28,7 +31,7 @@ beforeEach(function (): void {
 test('See all the candidates and their missions ', function (): void {
 	$response = $this->getJson(URL_BEGIN);
 
-	$response->assertStatus(config('response_status.sucessfull_status'));
+	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJsonCount(2, 'data');
 
 	$responseData = $response->json('data');
@@ -48,9 +51,9 @@ test('Delete one candidate ', function (): void {
 
 	$candidateMissions = Mission::where('candidate_id', CANDIDATE_ID)->get();
 
-	$response->assertStatus(config('response_status.sucessfull_status'));
+	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
-		'message' => config('candidate_json_response.delete_success'),
+		'message' => JsonResponse::DELETE_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseMissing('missions', $candidate);
@@ -58,11 +61,11 @@ test('Delete one candidate ', function (): void {
 });
 
 test('Try delete a candidate with negative id ', function (): void {
-	$response = $this->deleteJson(URL_BEGIN . '/delete/-1');
+	$response = $this->deleteJson(URL_BEGIN . '/delete/' . NEGATIVE_CANDIDATE_ID);
 
-	$response->assertStatus(config('response_status.not_found_status'));
+	$response->assertStatus(JsonStatus::NOT_FOUND->value);
 	$response->assertJson([
-		'message' => config('candidate_json_response.delete_error'),
+		'message' => JsonResponse::NOT_FOUND->value,
 	]);
 });
 
@@ -79,7 +82,7 @@ test('See all the candidates who have their mission who expired ', function (): 
 		]);
 
 	$response = $this->getJson(URL_BEGIN . "/expiring/{$expiryDate}");
-	$response->assertStatus(config('response_status.sucessfull_status'));
+	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJsonCount(1, 'data');
 	$this->assertCount(1, $response['data'][0]['missions']);
 });
@@ -92,9 +95,9 @@ test('Create one candidate ', function (): void {
 
 	$response = $this->postJson(URL_BEGIN . '/create', ['candidate' => $newCandidateData]);
 
-	$response->assertStatus(config('response_status.sucessfull_status'));
+	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
-		'message' => config('candidate_json_response.create_success'),
+		'message' => JsonResponse::CREATE_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseHas('candidates', $newCandidateData);
@@ -108,9 +111,9 @@ test('Try create one candidate with wrong information ', function (array $newCan
 	$response = $this->postJson(URL_BEGIN . '/create', [
 		$newCandidateData]);
 
-	$response->assertStatus(config('response_status.unprocessable_status'));
+	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
 	$response->assertJson([
-		'message' => config('candidate_json_response.create_error_data'),
+		'message' => JsonResponse::CREATE_ERROR->value,
 	]);
 })->with('Case of error');
 
@@ -122,9 +125,9 @@ test('Modify one candidate ', function (): void {
 
 	$response = $this->patchJson(URL_BEGIN . '/update/' . CANDIDATE_ID, ['candidate' => $updateCandidateData]);
 
-	$response->assertStatus(config('response_status.sucessfull_status'));
+	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
-		'message' => config('candidate_json_response.update_success'),
+		'message' => JsonResponse::UPDATE_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseHas('candidates', $updateCandidateData);
@@ -136,11 +139,11 @@ test('Try modify one candidate with negative id ', function (): void {
 		'name' => fake()->name(),
 	];
 
-	$response = $this->patchJson(URL_BEGIN . '/update/-1', ['candidate' => $updateCandidateData]);
+	$response = $this->patchJson(URL_BEGIN . '/update/' . NEGATIVE_CANDIDATE_ID, ['candidate' => $updateCandidateData]);
 
-	$response->assertStatus(config('response_status.not_found_status'));
+	$response->assertStatus(JsonStatus::NOT_FOUND->value);
 	$response->assertJson([
-		'message' => config('candidate_json_response.update_error'),
+		'message' => JsonResponse::NOT_FOUND->value,
 	]);
 
 	$this->assertDatabaseMissing('candidates', $updateCandidateData);
