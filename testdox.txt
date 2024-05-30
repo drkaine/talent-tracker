@@ -4,19 +4,19 @@
  [x] Try delete a candidate with negative id
  [x] See all the candidates who have their mission who expired
  [x] Create one candidate
- [x] Try create one candidate with wrong information with data set "([], 'Rollin Treutel III')"
- [x] Try create one candidate with wrong information with data set "(['Alda', '01234567890123456789012345678…456789'])"
+ [x] Try create one candidate with wrong information with data set "([1, 'Allen Mann'])"
+ [x] Try create one candidate with wrong information with data set "(['Marlin', '01234567890123456789012345678…456789'])"
+ [x] Try create one candidate with wrong information with data set "('Dillan', [])"
+ [x] Try create one candidate with wrong information with data set "(['01234567890123456789012345678…456789', 'Ms. Katarina Johnston'])"
  [x] Try create one candidate with wrong information with data set "([])"
- [x] Try create one candidate with wrong information with data set "('Alanis', [])"
- [x] Try create one candidate with wrong information with data set "(['Celine', 1])"
- [x] Try create one candidate with wrong information with data set "(['01234567890123456789012345678…456789', 'Dr. Paolo Bruen V'])"
- [x] Try create one candidate with wrong information with data set "([1, 'Asa Grady'])"
+ [x] Try create one candidate with wrong information with data set "(['Edythe', 1])"
+ [x] Try create one candidate with wrong information with data set "([], 'Holly Wiza')"
  [x] Modify one candidate
  [x] Try modify one candidate with negative id
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
- [x] Mission with data set "([DateTime, DateTime, 'animi', …])"
- [x] Mission with data set "([DateTime, DateTime, 'ut', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'libero', …])"
+ [x] Mission with data set "([DateTime, DateTime, 'magnam', …])"
  [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php

@@ -7,25 +7,8 @@ use App\Models\Mission;
 
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-dataset('data for test asssignment model', function () {
-	return [
-		[
-			[
-				'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
-				'end_date' => fake()->dateTimeBetween('now', '+1 year'),
-				'title' => fake()->word(),
-				'candidate_id' => 1,
-			],
-		],
-		[
-			[
-				'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
-				'end_date' => fake()->dateTimeBetween('now', '+1 year'),
-				'title' => fake()->word(),
-				'candidate_id' => null,
-			],
-		],
-	];
+dataset('Case for mission', function () {
+	return require './tests/dataset/MissionModel.php';
 });
 
 test('Mission ', function (array $missionData): void {
@@ -34,7 +17,7 @@ test('Mission ', function (array $missionData): void {
 	$mission->factory()->create($missionData);
 
 	$this->assertDatabaseHas('missions', $missionData);
-})->with('data for test asssignment model');
+})->with('Case for mission');
 
 test('Candidate ', function (): void {
 	$candidateData = [
