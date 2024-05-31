@@ -46,4 +46,15 @@ class MissionController extends Controller
 			JsonStatus::SUCCESS->value
 		);
 	}
+
+	public function destroy(string $missionId): JsonResponse
+	{
+		Mission::where('id', $missionId)->
+			delete();
+
+		return $this->JsonResponseBuilder(
+			EnumsJsonResponse::DELETE_MISSION_SUCCESS->value,
+			JsonStatus::SUCCESS->value
+		);
+	}
 }

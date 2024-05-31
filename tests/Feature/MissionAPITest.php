@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use App\Enums\JsonResponse;
 use App\Enums\JsonStatus;
+use App\Models\Mission;
 
 uses(
 	Illuminate\Foundation\Testing\RefreshDatabase::class
@@ -31,7 +32,7 @@ dataset('Case of error', function () {
 });
 
 test('Try create one mission with wrong information ', function (array $newMissionData): void {
-	$response = $this->postJson(URL_BEGIN . '/create', [
+	$response = $this->postJson(URL_BEGIN_MISSION . '/create', [
 		$newMissionData]);
 
 	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
@@ -39,3 +40,19 @@ test('Try create one mission with wrong information ', function (array $newMissi
 		'message' => JsonResponse::CREATE_ERROR->value,
 	]);
 })->with('Case of error');
+
+test('Delete one mission ', function (): void {
+	Mission::factory(2)->create();
+	$mission = Mission::where('id', 1)->
+		first()->
+		toArray();
+
+	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/1');
+
+	$response->assertStatus(JsonStatus::SUCCESS->value);
+	$response->assertJson([
+		'message' => JsonResponse::DELETE_MISSION_SUCCESS->value,
+	]);
+
+	$this->assertDatabaseMissing('missions', $mission);
+});

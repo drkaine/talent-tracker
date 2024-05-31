@@ -22,3 +22,5 @@ Route::patch('/candidates/update/{candidateId}', [CandidateController::class, 'u
 Route::delete('/candidates/delete/{candidateId}', [CandidateController::class, 'destroy']);
 
 Route::post('/missions/create', [MissionController::class, 'create']);
+
+Route::delete('/missions/delete/{missionId}', [MissionController::class, 'destroy']);
