@@ -56,3 +56,12 @@ test('Delete one mission ', function (): void {
 
 	$this->assertDatabaseMissing('missions', $mission);
 });
+
+test('Try delete a candidate with negative id ', function (): void {
+	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/-1');
+
+	$response->assertStatus(JsonStatus::NOT_FOUND->value);
+	$response->assertJson([
+		'message' => JsonResponse::MISSION_NOT_FOUND->value,
+	]);
+});

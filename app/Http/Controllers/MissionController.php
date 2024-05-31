@@ -49,8 +49,15 @@ class MissionController extends Controller
 
 	public function destroy(string $missionId): JsonResponse
 	{
-		Mission::where('id', $missionId)->
+		$isDelete = Mission::where('id', $missionId)->
 			delete();
+
+		if (!$isDelete) {
+			return $this->JsonResponseBuilder(
+				EnumsJsonResponse::MISSION_NOT_FOUND->value,
+				JsonStatus::NOT_FOUND->value
+			);
+		}
 
 		return $this->JsonResponseBuilder(
 			EnumsJsonResponse::DELETE_MISSION_SUCCESS->value,
