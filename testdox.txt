@@ -4,23 +4,35 @@
  [x] Try delete a candidate with negative id
  [x] See all the candidates who have their mission who expired
  [x] Create one candidate
- [x] Try create one candidate with wrong information with data set "(['Jasper', 1])"
+ [x] Try create one candidate with wrong information with data set "([1, 'Dr. Amie Waelchi'])"
+ [x] Try create one candidate with wrong information with data set "(['Jasper', '01234567890123456789012345678…456789'])"
+ [x] Try create one candidate with wrong information with data set "([[], 'Prof. Dante Dietrich Jr.'])"
+ [x] Try create one candidate with wrong information with data set "(['Leo', 1])"
+ [x] Try create one candidate with wrong information with data set "(['01234567890123456789012345678…456789', 'Mr. Kenneth Lubowitz'])"
  [x] Try create one candidate with wrong information with data set "([])"
- [x] Try create one candidate with wrong information with data set "(['Jada', []])"
- [x] Try create one candidate with wrong information with data set "([[], 'Prof. Nyasia Reinger Jr.'])"
- [x] Try create one candidate with wrong information with data set "([1, 'Horace Bradtke'])"
- [x] Try create one candidate with wrong information with data set "(['Turner', '01234567890123456789012345678…456789'])"
- [x] Try create one candidate with wrong information with data set "(['01234567890123456789012345678…456789', 'Lydia Towne'])"
+ [x] Try create one candidate with wrong information with data set "(['Linnie', []])"
  [x] Modify one candidate
  [x] Try modify one candidate with negative id
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/MissionAPITest.php
- [x] Create one mission with data set "(['2023-07-09T05:41:25.000000Z', '2024-06-05T20:28:28.000000Z', 'consequatur', …])"
- [x] Create one mission with data set "(['2023-11-04T09:56:27.000000Z', '2025-04-30T01:44:06.000000Z', 'nobis', …])"
+ [x] Create one mission with data set "(['2024-02-08T06:01:52.000000Z', '2025-05-16T14:51:45.000000Z', 'minus', …])"
+ [x] Create one mission with data set "(['2023-08-10T22:28:46.000000Z', '2024-06-29T12:43:49.000000Z', 'et', …])"
+ [x] Try create one mission with wrong information with data set "([1, '2025-02-28T20:45:43.000000Z', 'quo', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-07-07T02:39:55.000000Z', 'id', 1])"
+ [x] Try create one mission with wrong information with data set "(['2023-07-31T01:12:14.000000Z', '2025-04-26T13:34:15.000000Z', 1, …])"
+ [x] Try create one mission with wrong information with data set "(['2024-11-27T17:11:58.000000Z', 'qui', 1])"
+ [x] Try create one mission with wrong information with data set "(['2024-01-01T05:12:46.000000Z', '2025-01-11T21:55:27.000000Z', 'odio', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-07-01T02:57:03.000000Z', '2024-06-13T18:26:56.000000Z', 'est'])"
+ [x] Try create one mission with wrong information with data set "(['2023-06-06T00:44:16.000000Z', '2024-09-06T13:38:51.000000Z', 'aspernatur', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-07-18T18:48:38.000000Z', '2024-11-17T21:28:44.000000Z', 'minus', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-09-21T12:03:49.000000Z', 1, 'quos', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-06-07T21:46:47.000000Z', '2022-07-05T12:47:25.000000Z', 'omnis', …])"
+ [x] Try create one mission with wrong information with data set "(['2024-02-05T16:17:47.000000Z', '2024-10-12T18:46:22.000000Z', 1])"
+ [x] Try create one mission with wrong information with data set "(['2025-09-11T12:54:49.000000Z', '2024-06-16T05:36:14.000000Z', 'quia', …])"
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
- [x] Mission with data set "(['2024-01-24T02:50:22.000000Z', '2024-06-09T13:38:04.000000Z', 'commodi', …])"
- [x] Mission with data set "(['2024-02-15T08:43:08.000000Z', '2025-04-24T02:10:13.000000Z', 'ratione', …])"
+ [x] Mission with data set "(['2024-03-15T00:11:38.000000Z', '2024-07-19T04:23:18.000000Z', 'autem', …])"
+ [x] Mission with data set "(['2024-02-14T02:38:59.000000Z', '2024-12-02T00:02:33.000000Z', 'nulla', …])"
  [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php
