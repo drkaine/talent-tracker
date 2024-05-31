@@ -16,14 +16,16 @@ class MissionController extends Controller
 {
 	use JsonResponseTrait;
 
+	private array $validatorRules = [
+		'mission' => 'required|array',
+		'mission.start_date' => 'required|date',
+		'mission.end_date' => 'required|date',
+		'mission.title' => 'required|string|max:450',
+	];
+
 	public function create(Request $request): JsonResponse
 	{
-		$validator = Validator::make($request->all(), [
-			'mission' => 'required|array',
-			'mission.start_date' => 'required|date',
-			'mission.end_date' => 'required|date',
-			'mission.title' => 'required|string|max:450',
-		]);
+		$validator = Validator::make($request->all(), $this->validatorRules);
 
 		if ($validator->fails()) {
 			return $this->JsonResponseBuilder(

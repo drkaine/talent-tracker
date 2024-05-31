@@ -22,6 +22,12 @@ class CandidateController extends Controller
 
 	private Candidate $candidate;
 
+	private array $validatorRules = [
+		'candidate' => 'required',
+		'candidate.first_name' => 'string|max:255',
+		'candidate.name' => 'string|max:255',
+	];
+
 	public function __construct()
 	{
 		$this->candidate = new Candidate;
@@ -37,11 +43,7 @@ class CandidateController extends Controller
 
 	public function create(Request $request): JsonResponse
 	{
-		$validator = Validator::make($request->all(), [
-			'candidate' => 'required',
-			'candidate.first_name' => 'string|max:255',
-			'candidate.name' => 'string|max:255',
-		]);
+		$validator = Validator::make($request->all(), $this->validatorRules);
 
 		if ($validator->fails()) {
 			return $this->JsonResponseBuilder(
