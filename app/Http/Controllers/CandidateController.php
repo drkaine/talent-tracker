@@ -86,6 +86,15 @@ class CandidateController extends Controller
 
 	public function update(Request $request, string $candidateId): JsonResponse
 	{
+		$validator = Validator::make($request->all(), $this->validatorRules);
+
+		if ($validator->fails()) {
+			return $this->JsonResponseBuilder(
+				EnumsJsonResponse::CREATE_ERROR->value,
+				JsonStatus::UNPROCESSABLE->value
+			);
+		}
+
 		$isUpdate = $this->candidate->
 			where('id', $candidateId)->
 			update([

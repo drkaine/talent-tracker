@@ -132,6 +132,15 @@ test('Modify one candidate ', function (): void {
 	$this->assertDatabaseHas('candidates', $updateCandidateData);
 });
 
+test('Try modify one candidate with wrong information ', function (array $updateCandidateData): void {
+	$response = $this->patchJson(URL_BEGIN . '/update/' . CANDIDATE_ID, ['candidate' => $updateCandidateData]);
+
+	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
+	$response->assertJson([
+		'message' => JsonResponse::CREATE_ERROR->value,
+	]);
+})->with('Case of error');
+
 test('Try modify one candidate with negative id ', function (): void {
 	$updateCandidateData = [
 		'first_name' => fake()->firstName(),
