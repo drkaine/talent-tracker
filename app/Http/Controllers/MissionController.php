@@ -55,6 +55,23 @@ class MissionController extends Controller
 		);
 	}
 
+	public function update(Request $request, string $missionId): JsonResponse
+	{
+		$this->mission->
+			where('id', $missionId)->
+			update([
+				'start_date' => $request->mission['start_date'],
+				'end_date' => $request->mission['end_date'],
+				'title' => $request->mission['title'],
+				'candidate_id' => $request->mission['candidate_id'],
+			]);
+
+		return $this->JsonResponseBuilder(
+			EnumsJsonResponse::UPDATE_MISSION_SUCCESS->value,
+			JsonStatus::SUCCESS->value
+		);
+	}
+
 	public function destroy(string $missionId): JsonResponse
 	{
 		$isDelete = $this->mission->

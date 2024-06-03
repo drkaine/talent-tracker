@@ -5,6 +5,7 @@ declare(strict_types = 1);
 use App\Enums\JsonResponse;
 use App\Enums\JsonStatus;
 use App\Models\Mission;
+use Carbon\Carbon;
 
 uses(
 	Illuminate\Foundation\Testing\RefreshDatabase::class
@@ -64,4 +65,28 @@ test('Try delete a candidate with negative id ', function (): void {
 	$response->assertJson([
 		'message' => JsonResponse::MISSION_NOT_FOUND->value,
 	]);
+});
+
+test('Modify one mission ', function (): void {
+	Mission::factory(2)->create();
+
+	$updateMissionData = [
+		'id' => 1,
+		'start_date' => Carbon::parse(fake()->dateTimeBetween('-1 year', 'now'))->toISOString(),
+		'end_date' => Carbon::parse(fake()->dateTimeBetween('now', '+1 year'))->toISOString(),
+		'title' => fake()->word(),
+		'candidate_id' => 1,
+	];
+
+	$oldMission = Mission::where('id', 1)->first()->toArray();
+
+	$response = $this->patchJson(URL_BEGIN_MISSION . '/update/1', ['mission' => $updateMissionData]);
+
+	$response->assertStatus(JsonStatus::SUCCESS->value);
+	$response->assertJson([
+		'message' => JsonResponse::UPDATE_MISSION_SUCCESS->value,
+	]);
+
+	$this->assertDatabaseMissing('missions', $oldMission);
+	$this->assertDatabaseHas('missions', $updateMissionData);
 });
