@@ -12,10 +12,37 @@ uses(
 );
 
 const URL_BEGIN_MISSION = '/api/missions';
-const MISSION_ID = 1;
 
 dataset('Case for mission', function () {
 	return require './tests/dataset/MissionModel.php';
+});
+
+dataset('Case of error', function () {
+	return require './tests/dataset/WrongMissionData.php';
+});
+
+beforeEach(function (): void {
+	Mission::factory(2)->create();
+
+	$this->mission = Mission::where('id', ID)->
+		first()->
+		toArray();
+
+	$this->updateMissionData = [
+		'start_date' => Carbon::parse(
+			fake()->
+				dateTimeBetween('-1 year', 'now')
+		)->
+			format('Y/m/d'),
+		'end_date' => Carbon::parse(
+			fake()->
+				dateTimeBetween('now', '+1 year')
+		)->
+			format('Y/m/d'),
+		'title' => fake()->
+			word(),
+		'candidate_id' => 1,
+	];
 });
 
 test('Create one mission ', function (array $newMissionData): void {
@@ -32,10 +59,6 @@ test('Create one mission ', function (array $newMissionData): void {
 	$this->assertDatabaseHas('missions', $newMissionData);
 })->with('Case for mission');
 
-dataset('Case of error', function () {
-	return require './tests/dataset/WrongMissionData.php';
-});
-
 test('Try create one mission with wrong information ', function (array $newMissionData): void {
 	$response = $this->postJson(
 		URL_BEGIN_MISSION . '/create',
@@ -49,23 +72,18 @@ test('Try create one mission with wrong information ', function (array $newMissi
 })->with('Case of error');
 
 test('Delete one mission ', function (): void {
-	Mission::factory(2)->create();
-	$mission = Mission::where('id', MISSION_ID)->
-		first()->
-		toArray();
-
-	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/' . MISSION_ID);
+	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/' . ID);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
 		'message' => JsonResponse::DELETE_MISSION_SUCCESS->value,
 	]);
 
-	$this->assertDatabaseMissing('missions', $mission);
+	$this->assertDatabaseMissing('missions', $this->mission);
 });
 
 test('Try delete a candidate with negative id ', function (): void {
-	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/-1');
+	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/' . NEGATIVE_ID);
 
 	$response->assertStatus(JsonStatus::NOT_FOUND->value);
 	$response->assertJson([
@@ -74,32 +92,10 @@ test('Try delete a candidate with negative id ', function (): void {
 });
 
 test('Modify one mission ', function (): void {
-	Mission::factory(2)->create();
-
-	$updateMissionData = [
-		'id' => MISSION_ID,
-		'start_date' => Carbon::parse(
-			fake()->
-				dateTimeBetween('-1 year', 'now')
-		)->
-				toISOString(),
-		'end_date' => Carbon::parse(
-			fake()->
-				dateTimeBetween('now', '+1 year')
-		)->
-				toISOString(),
-		'title' => fake()->
-			word(),
-		'candidate_id' => 1,
-	];
-
-	$oldMissionData = Mission::where('id', MISSION_ID)->
-		first()->
-		toArray();
 
 	$response = $this->patchJson(
-		URL_BEGIN_MISSION . '/update/' . MISSION_ID,
-		['mission' => $updateMissionData]
+		URL_BEGIN_MISSION . '/update/' . ID,
+		['mission' => $this->updateMissionData]
 	);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
@@ -107,30 +103,14 @@ test('Modify one mission ', function (): void {
 		'message' => JsonResponse::UPDATE_MISSION_SUCCESS->value,
 	]);
 
-	$this->assertDatabaseMissing('missions', $oldMissionData);
-	$this->assertDatabaseHas('missions', $updateMissionData);
+	$this->assertDatabaseMissing('missions', $this->mission);
+	$this->assertDatabaseHas('missions', $this->updateMissionData);
 });
 
 test('Try modify one mission with negative id ', function (): void {
-	$updateMissionData = [
-		'start_date' => Carbon::parse(
-			fake()->
-				dateTimeBetween('-1 year', 'now')
-		)->
-			toISOString(),
-		'end_date' => Carbon::parse(
-			fake()->
-				dateTimeBetween('now', '+1 year')
-		)->
-			toISOString(),
-		'title' => fake()->
-			word(),
-		'candidate_id' => 1,
-	];
-
 	$response = $this->patchJson(
-		URL_BEGIN_MISSION . '/update/-1',
-		['mission' => $updateMissionData]
+		URL_BEGIN_MISSION . '/update/' . NEGATIVE_ID,
+		['mission' => $this->updateMissionData]
 	);
 
 	$response->assertStatus(JsonStatus::NOT_FOUND->value);
@@ -138,5 +118,5 @@ test('Try modify one mission with negative id ', function (): void {
 		'message' => JsonResponse::MISSION_NOT_FOUND->value,
 	]);
 
-	$this->assertDatabaseMissing('missions', $updateMissionData);
+	$this->assertDatabaseMissing('missions', $this->updateMissionData);
 });
