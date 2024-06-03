@@ -104,7 +104,7 @@ class CandidateController extends Controller
 
 		if (!$isUpdate) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::NOT_FOUND->value,
+				EnumsJsonResponse::CANDIDATE_NOT_FOUND->value,
 				JsonStatus::NOT_FOUND->value
 			);
 		}
@@ -123,7 +123,7 @@ class CandidateController extends Controller
 
 		if (!$isDelete) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::NOT_FOUND->value,
+				EnumsJsonResponse::CANDIDATE_NOT_FOUND->value,
 				JsonStatus::NOT_FOUND->value
 			);
 		}

@@ -12,7 +12,7 @@ uses(
 	Illuminate\Foundation\Testing\RefreshDatabase::class
 );
 
-const URL_BEGIN = '/api/candidates';
+const URL_BEGIN_CANDIDATE = '/api/candidates';
 const CANDIDATE_ID = 1;
 const NEGATIVE_CANDIDATE_ID = -1;
 
@@ -28,7 +28,7 @@ beforeEach(function (): void {
 });
 
 test('See all the candidates and their missions ', function (): void {
-	$response = $this->getJson(URL_BEGIN);
+	$response = $this->getJson(URL_BEGIN_CANDIDATE);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJsonCount(2, 'data');
@@ -46,9 +46,10 @@ test('Delete one candidate ', function (): void {
 		first()->
 		toArray();
 
-	$response = $this->deleteJson(URL_BEGIN . '/delete/' . CANDIDATE_ID);
+	$response = $this->deleteJson(URL_BEGIN_CANDIDATE . '/delete/' . CANDIDATE_ID);
 
-	$candidateMissions = Mission::where('candidate_id', CANDIDATE_ID)->get();
+	$candidateMissions = Mission::where('candidate_id', CANDIDATE_ID)->
+		get();
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
@@ -60,11 +61,11 @@ test('Delete one candidate ', function (): void {
 });
 
 test('Try delete a candidate with negative id ', function (): void {
-	$response = $this->deleteJson(URL_BEGIN . '/delete/' . NEGATIVE_CANDIDATE_ID);
+	$response = $this->deleteJson(URL_BEGIN_CANDIDATE . '/delete/' . NEGATIVE_CANDIDATE_ID);
 
 	$response->assertStatus(JsonStatus::NOT_FOUND->value);
 	$response->assertJson([
-		'message' => JsonResponse::NOT_FOUND->value,
+		'message' => JsonResponse::CANDIDATE_NOT_FOUND->value,
 	]);
 });
 
@@ -80,7 +81,7 @@ test('See all the candidates who have their mission who expired ', function (): 
 			'candidate_id' => CANDIDATE_ID,
 		]);
 
-	$response = $this->getJson(URL_BEGIN . "/expiring/{$expiryDate}");
+	$response = $this->getJson(URL_BEGIN_CANDIDATE . "/expiring/{$expiryDate}");
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJsonCount(1, 'data');
 	$this->assertCount(1, $response['data'][0]['missions']);
@@ -92,7 +93,10 @@ test('Create one candidate ', function (): void {
 		'name' => fake()->name(),
 	];
 
-	$response = $this->postJson(URL_BEGIN . '/create', ['candidate' => $newCandidateData]);
+	$response = $this->postJson(
+		URL_BEGIN_CANDIDATE . '/create',
+		['candidate' => $newCandidateData]
+	);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
@@ -107,8 +111,10 @@ dataset('Case of error', function () {
 });
 
 test('Try create one candidate with wrong information ', function (array $newCandidateData): void {
-	$response = $this->postJson(URL_BEGIN . '/create', [
-		$newCandidateData]);
+	$response = $this->postJson(
+		URL_BEGIN_CANDIDATE . '/create',
+		[$newCandidateData]
+	);
 
 	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
 	$response->assertJson([
@@ -122,7 +128,14 @@ test('Modify one candidate ', function (): void {
 		'name' => fake()->name(),
 	];
 
-	$response = $this->patchJson(URL_BEGIN . '/update/' . CANDIDATE_ID, ['candidate' => $updateCandidateData]);
+	$oldCandidateData = Candidate::where('id', CANDIDATE_ID)->
+		first()->
+		toArray();
+
+	$response = $this->patchJson(
+		URL_BEGIN_CANDIDATE . '/update/' . CANDIDATE_ID,
+		['candidate' => $updateCandidateData]
+	);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
@@ -130,10 +143,14 @@ test('Modify one candidate ', function (): void {
 	]);
 
 	$this->assertDatabaseHas('candidates', $updateCandidateData);
+	$this->assertDatabaseMissing('candidates', $oldCandidateData);
 });
 
 test('Try modify one candidate with wrong information ', function (array $updateCandidateData): void {
-	$response = $this->patchJson(URL_BEGIN . '/update/' . CANDIDATE_ID, ['candidate' => $updateCandidateData]);
+	$response = $this->patchJson(
+		URL_BEGIN_CANDIDATE . '/update/' . CANDIDATE_ID,
+		['candidate' => $updateCandidateData]
+	);
 
 	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
 	$response->assertJson([
@@ -147,11 +164,14 @@ test('Try modify one candidate with negative id ', function (): void {
 		'name' => fake()->name(),
 	];
 
-	$response = $this->patchJson(URL_BEGIN . '/update/' . NEGATIVE_CANDIDATE_ID, ['candidate' => $updateCandidateData]);
+	$response = $this->patchJson(
+		URL_BEGIN_CANDIDATE . '/update/' . NEGATIVE_CANDIDATE_ID,
+		['candidate' => $updateCandidateData]
+	);
 
 	$response->assertStatus(JsonStatus::NOT_FOUND->value);
 	$response->assertJson([
-		'message' => JsonResponse::NOT_FOUND->value,
+		'message' => JsonResponse::CANDIDATE_NOT_FOUND->value,
 	]);
 
 	$this->assertDatabaseMissing('candidates', $updateCandidateData);

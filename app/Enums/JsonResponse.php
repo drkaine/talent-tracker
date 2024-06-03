@@ -13,6 +13,6 @@ enum JsonResponse: string
 	case CREATE_ERROR = 'The given data was invalid.';
 	case UPDATE_CANDIDATE_SUCCESS = 'Candidate updated successfully.';
 	case UPDATE_MISSION_SUCCESS = 'Mission updated successfully.';
-	case NOT_FOUND = 'Candidate not found.';
+	case CANDIDATE_NOT_FOUND = 'Candidate not found.';
 	case MISSION_NOT_FOUND = 'Mission not found.';
 }

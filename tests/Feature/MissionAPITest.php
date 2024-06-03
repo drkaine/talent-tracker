@@ -12,13 +12,17 @@ uses(
 );
 
 const URL_BEGIN_MISSION = '/api/missions';
+const MISSION_ID = 1;
 
 dataset('Case for mission', function () {
 	return require './tests/dataset/MissionModel.php';
 });
 
 test('Create one mission ', function (array $newMissionData): void {
-	$response = $this->postJson(URL_BEGIN_MISSION . '/create', ['mission' => $newMissionData]);
+	$response = $this->postJson(
+		URL_BEGIN_MISSION . '/create',
+		['mission' => $newMissionData]
+	);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
@@ -33,8 +37,10 @@ dataset('Case of error', function () {
 });
 
 test('Try create one mission with wrong information ', function (array $newMissionData): void {
-	$response = $this->postJson(URL_BEGIN_MISSION . '/create', [
-		$newMissionData]);
+	$response = $this->postJson(
+		URL_BEGIN_MISSION . '/create',
+		[$newMissionData]
+	);
 
 	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
 	$response->assertJson([
@@ -44,11 +50,11 @@ test('Try create one mission with wrong information ', function (array $newMissi
 
 test('Delete one mission ', function (): void {
 	Mission::factory(2)->create();
-	$mission = Mission::where('id', 1)->
+	$mission = Mission::where('id', MISSION_ID)->
 		first()->
 		toArray();
 
-	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/1');
+	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/' . MISSION_ID);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
@@ -71,22 +77,36 @@ test('Modify one mission ', function (): void {
 	Mission::factory(2)->create();
 
 	$updateMissionData = [
-		'id' => 1,
-		'start_date' => Carbon::parse(fake()->dateTimeBetween('-1 year', 'now'))->toISOString(),
-		'end_date' => Carbon::parse(fake()->dateTimeBetween('now', '+1 year'))->toISOString(),
-		'title' => fake()->word(),
+		'id' => MISSION_ID,
+		'start_date' => Carbon::parse(
+			fake()->
+				dateTimeBetween('-1 year', 'now')
+		)->
+				toISOString(),
+		'end_date' => Carbon::parse(
+			fake()->
+				dateTimeBetween('now', '+1 year')
+		)->
+				toISOString(),
+		'title' => fake()->
+			word(),
 		'candidate_id' => 1,
 	];
 
-	$oldMission = Mission::where('id', 1)->first()->toArray();
+	$oldMissionData = Mission::where('id', MISSION_ID)->
+		first()->
+		toArray();
 
-	$response = $this->patchJson(URL_BEGIN_MISSION . '/update/1', ['mission' => $updateMissionData]);
+	$response = $this->patchJson(
+		URL_BEGIN_MISSION . '/update/' . MISSION_ID,
+		['mission' => $updateMissionData]
+	);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
 		'message' => JsonResponse::UPDATE_MISSION_SUCCESS->value,
 	]);
 
-	$this->assertDatabaseMissing('missions', $oldMission);
+	$this->assertDatabaseMissing('missions', $oldMissionData);
 	$this->assertDatabaseHas('missions', $updateMissionData);
 });
