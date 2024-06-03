@@ -17,7 +17,7 @@ const ID = 1;
 const NEGATIVE_ID = -1;
 
 dataset('Case of error', function () {
-	return require './tests/dataset/CreateCandidate.php';
+	return require './tests/dataset/WrongCandidateData.php';
 });
 
 beforeEach(function (): void {

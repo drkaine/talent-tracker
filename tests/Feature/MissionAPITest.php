@@ -14,7 +14,7 @@ uses(
 const URL_BEGIN_MISSION = '/api/missions';
 
 dataset('Case for mission', function () {
-	return require './tests/dataset/MissionModel.php';
+	return require './tests/dataset/GoodMissionData.php';
 });
 
 dataset('Case of error', function () {

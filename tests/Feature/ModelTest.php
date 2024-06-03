@@ -8,7 +8,7 @@ use App\Models\Mission;
 uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 dataset('Case for mission', function () {
-	return require './tests/dataset/MissionModel.php';
+	return require './tests/dataset/GoodMissionData.php';
 });
 
 test('Mission ', function (array $missionData): void {
