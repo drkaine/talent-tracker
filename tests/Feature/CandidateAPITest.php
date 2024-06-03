@@ -52,7 +52,7 @@ test('Delete one candidate ', function (): void {
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
-		'message' => JsonResponse::DELETE_SUCCESS->value,
+		'message' => JsonResponse::DELETE_CANDIDATE_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseMissing('missions', $candidate);
@@ -96,7 +96,7 @@ test('Create one candidate ', function (): void {
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
-		'message' => JsonResponse::CREATE_SUCCESS->value,
+		'message' => JsonResponse::CREATE_CANDIDATE_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseHas('candidates', $newCandidateData);
@@ -126,7 +126,7 @@ test('Modify one candidate ', function (): void {
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
-		'message' => JsonResponse::UPDATE_SUCCESS->value,
+		'message' => JsonResponse::UPDATE_CANDIDATE_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseHas('candidates', $updateCandidateData);

@@ -8,12 +8,12 @@ use App\Enums\JsonResponse as EnumsJsonResponse;
 use App\Enums\JsonStatus;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
+use App\Models\Mission;
 use App\Traits\JsonResponseTrait;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CandidateController extends Controller
@@ -59,7 +59,7 @@ class CandidateController extends Controller
 			]);
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::CREATE_SUCCESS->value,
+			EnumsJsonResponse::CREATE_CANDIDATE_SUCCESS->value,
 			JsonStatus::SUCCESS->value
 		);
 	}
@@ -110,14 +110,14 @@ class CandidateController extends Controller
 		}
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::UPDATE_SUCCESS->value,
+			EnumsJsonResponse::UPDATE_CANDIDATE_SUCCESS->value,
 			JsonStatus::SUCCESS->value
 		);
 	}
 
 	public function destroy(string $candidateId): JsonResponse
 	{
-		$isDelete = DB::table('candidates')->
+		$isDelete = $this->candidate->
 			where('id', $candidateId)->
 			delete();
 
@@ -128,12 +128,11 @@ class CandidateController extends Controller
 			);
 		}
 
-		DB::table('missions')->
-			where('candidate_id', $candidateId)->
+		Mission::where('candidate_id', $candidateId)->
 			delete();
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::DELETE_SUCCESS->value,
+			EnumsJsonResponse::DELETE_CANDIDATE_SUCCESS->value,
 			JsonStatus::SUCCESS->value
 		);
 	}

@@ -16,12 +16,19 @@ class MissionController extends Controller
 {
 	use JsonResponseTrait;
 
+	private Mission $mission;
+
 	private array $validatorRules = [
 		'mission' => 'required|array',
 		'mission.start_date' => 'required|date',
 		'mission.end_date' => 'required|date',
 		'mission.title' => 'required|string|max:450',
 	];
+
+	public function __construct()
+	{
+		$this->mission = new Mission;
+	}
 
 	public function create(Request $request): JsonResponse
 	{
@@ -34,22 +41,24 @@ class MissionController extends Controller
 			);
 		}
 
-		Mission::create([
-			'start_date' => $request->mission['start_date'],
-			'end_date' => $request->mission['end_date'],
-			'title' => $request->mission['title'],
-			'candidate_id' => $request->mission['candidate_id'],
-		]);
+		$this->mission->
+			create([
+				'start_date' => $request->mission['start_date'],
+				'end_date' => $request->mission['end_date'],
+				'title' => $request->mission['title'],
+				'candidate_id' => $request->mission['candidate_id'],
+			]);
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::MISSION_CREATE_SUCCESS->value,
+			EnumsJsonResponse::CREATE_MISSION_SUCCESS->value,
 			JsonStatus::SUCCESS->value
 		);
 	}
 
 	public function destroy(string $missionId): JsonResponse
 	{
-		$isDelete = Mission::where('id', $missionId)->
+		$isDelete = $this->mission->
+			where('id', $missionId)->
 			delete();
 
 		if (!$isDelete) {

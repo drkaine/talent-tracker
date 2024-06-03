@@ -21,7 +21,7 @@ test('Create one mission ', function (array $newMissionData): void {
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
 	$response->assertJson([
-		'message' => JsonResponse::MISSION_CREATE_SUCCESS->value,
+		'message' => JsonResponse::CREATE_MISSION_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseHas('missions', $newMissionData);
