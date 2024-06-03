@@ -57,7 +57,7 @@ class MissionController extends Controller
 
 	public function update(Request $request, string $missionId): JsonResponse
 	{
-		$this->mission->
+		$isUpdate = $this->mission->
 			where('id', $missionId)->
 			update([
 				'start_date' => $request->mission['start_date'],
@@ -65,6 +65,13 @@ class MissionController extends Controller
 				'title' => $request->mission['title'],
 				'candidate_id' => $request->mission['candidate_id'],
 			]);
+
+		if (!$isUpdate) {
+			return $this->JsonResponseBuilder(
+				EnumsJsonResponse::MISSION_NOT_FOUND->value,
+				JsonStatus::NOT_FOUND->value
+			);
+		}
 
 		return $this->JsonResponseBuilder(
 			EnumsJsonResponse::UPDATE_MISSION_SUCCESS->value,

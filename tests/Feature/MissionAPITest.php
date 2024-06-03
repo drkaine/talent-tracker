@@ -110,3 +110,33 @@ test('Modify one mission ', function (): void {
 	$this->assertDatabaseMissing('missions', $oldMissionData);
 	$this->assertDatabaseHas('missions', $updateMissionData);
 });
+
+test('Try modify one mission with negative id ', function (): void {
+	$updateMissionData = [
+		'start_date' => Carbon::parse(
+			fake()->
+				dateTimeBetween('-1 year', 'now')
+		)->
+			toISOString(),
+		'end_date' => Carbon::parse(
+			fake()->
+				dateTimeBetween('now', '+1 year')
+		)->
+			toISOString(),
+		'title' => fake()->
+			word(),
+		'candidate_id' => 1,
+	];
+
+	$response = $this->patchJson(
+		URL_BEGIN_MISSION . '/update/-1',
+		['mission' => $updateMissionData]
+	);
+
+	$response->assertStatus(JsonStatus::NOT_FOUND->value);
+	$response->assertJson([
+		'message' => JsonResponse::MISSION_NOT_FOUND->value,
+	]);
+
+	$this->assertDatabaseMissing('missions', $updateMissionData);
+});

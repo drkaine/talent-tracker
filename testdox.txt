@@ -4,45 +4,46 @@
  [x] Try delete a candidate with negative id
  [x] See all the candidates who have their mission who expired
  [x] Create one candidate
- [x] Try create one candidate with wrong information with data set "(['Lue', []])"
- [x] Try create one candidate with wrong information with data set "(['Kali', 1])"
- [x] Try create one candidate with wrong information with data set "(['01234567890123456789012345678…456789', 'Terrell Stamm'])"
- [x] Try create one candidate with wrong information with data set "([[], 'Mariane Schulist'])"
+ [x] Try create one candidate with wrong information with data set "(['Zander', '01234567890123456789012345678…456789'])"
+ [x] Try create one candidate with wrong information with data set "([1, 'Chance Ruecker'])"
+ [x] Try create one candidate with wrong information with data set "(['01234567890123456789012345678…456789', 'Camilla Hartmann'])"
+ [x] Try create one candidate with wrong information with data set "(['Watson', 1])"
  [x] Try create one candidate with wrong information with data set "([])"
- [x] Try create one candidate with wrong information with data set "(['Mitchel', '01234567890123456789012345678…456789'])"
- [x] Try create one candidate with wrong information with data set "([1, 'Wilma Lowe II'])"
+ [x] Try create one candidate with wrong information with data set "([[], 'Dr. D'angelo Hessel II'])"
+ [x] Try create one candidate with wrong information with data set "(['Anastasia', []])"
  [x] Modify one candidate
+ [x] Try modify one candidate with wrong information with data set "([[], 'Alisa Wolff'])"
+ [x] Try modify one candidate with wrong information with data set "(['01234567890123456789012345678…456789', 'Alan Nader V'])"
  [x] Try modify one candidate with wrong information with data set "([])"
- [x] Try modify one candidate with wrong information with data set "(['Kristin', []])"
- [x] Try modify one candidate with wrong information with data set "(['01234567890123456789012345678…456789', 'Mr. Danial Fritsch Jr.'])"
- [x] Try modify one candidate with wrong information with data set "(['Vivian', 1])"
- [x] Try modify one candidate with wrong information with data set "([1, 'Keely Bechtelar'])"
- [x] Try modify one candidate with wrong information with data set "(['Dolores', '01234567890123456789012345678…456789'])"
- [x] Try modify one candidate with wrong information with data set "([[], 'Santos Hilpert IV'])"
+ [x] Try modify one candidate with wrong information with data set "(['Ona', []])"
+ [x] Try modify one candidate with wrong information with data set "(['Karelle', '01234567890123456789012345678…456789'])"
+ [x] Try modify one candidate with wrong information with data set "(['Earlene', 1])"
+ [x] Try modify one candidate with wrong information with data set "([1, 'Mrs. Rosamond Bogisich'])"
  [x] Try modify one candidate with negative id
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/MissionAPITest.php
- [x] Create one mission with data set "(['2024-02-06T22:38:40.000000Z', '2025-02-01T14:05:26.000000Z', 'et', …])"
- [x] Create one mission with data set "(['2024-01-04T10:50:28.000000Z', '2024-06-05T14:56:38.000000Z', 'dolorem', …])"
- [x] Try create one mission with wrong information with data set "(['2024-10-22T11:08:45.000000Z', 'error', 1])"
- [x] Try create one mission with wrong information with data set "(['2023-12-09T03:39:27.000000Z', '2024-11-13T18:08:53.000000Z', 'eaque', …])"
- [x] Try create one mission with wrong information with data set "(['2024-03-04T00:21:26.000000Z', '2024-09-27T17:53:15.000000Z', 'vel', …])"
- [x] Try create one mission with wrong information with data set "(['2023-10-16T16:05:23.000000Z', 1, 'ut', …])"
- [x] Try create one mission with wrong information with data set "(['2023-07-14T21:15:25.000000Z', '2024-09-19T16:20:03.000000Z', 1])"
- [x] Try create one mission with wrong information with data set "(['2023-11-17T10:08:58.000000Z', '2023-12-09T09:34:43.000000Z', 'sapiente', …])"
- [x] Try create one mission with wrong information with data set "(['2024-01-07T23:46:46.000000Z', '2024-10-03T09:43:36.000000Z', 'minima'])"
- [x] Try create one mission with wrong information with data set "(['2024-11-19T01:37:43.000000Z', '2025-03-03T23:49:05.000000Z', 'eum', …])"
- [x] Try create one mission with wrong information with data set "(['2023-08-26T06:55:38.000000Z', 'sit', 1])"
- [x] Try create one mission with wrong information with data set "([1, '2025-02-28T03:02:50.000000Z', 'voluptatum', …])"
- [x] Try create one mission with wrong information with data set "(['2024-03-10T02:03:55.000000Z', '2024-08-13T04:32:59.000000Z', 1, …])"
- [x] Try create one mission with wrong information with data set "(['2024-05-31T16:40:27.000000Z', '2024-11-22T04:27:52.000000Z', 'possimus', …])"
+ [x] Create one mission with data set "(['2023-08-08T15:48:43.000000Z', '2024-08-23T18:19:15.000000Z', 'ut', …])"
+ [x] Create one mission with data set "(['2023-06-14T14:19:39.000000Z', '2025-02-16T17:37:07.000000Z', 'doloremque', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-07-12T01:47:29.000000Z', '2024-02-12T20:27:41.000000Z', 'perferendis', …])"
+ [x] Try create one mission with wrong information with data set "(['2024-04-25T12:31:15.000000Z', '2024-08-30T00:08:17.000000Z', 'maxime'])"
+ [x] Try create one mission with wrong information with data set "(['2024-03-31T04:51:38.000000Z', '2025-05-05T21:58:49.000000Z', 'temporibus', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-07-08T21:17:34.000000Z', '2024-12-05T10:40:23.000000Z', 'consequatur', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-11-22T22:12:19.000000Z', '2025-01-05T21:40:41.000000Z', 1])"
+ [x] Try create one mission with wrong information with data set "(['2023-08-23T23:55:58.000000Z', '2025-01-29T07:04:37.000000Z', 1, …])"
+ [x] Try create one mission with wrong information with data set "([1, '2024-11-14T23:46:02.000000Z', 'quia', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-09-07T00:44:04.000000Z', '2024-06-16T11:56:37.000000Z', 'a', …])"
+ [x] Try create one mission with wrong information with data set "(['2025-04-13T22:47:18.000000Z', '2024-06-30T12:45:47.000000Z', 'est', …])"
+ [x] Try create one mission with wrong information with data set "(['2024-02-15T19:58:55.000000Z', 1, 'et', …])"
+ [x] Try create one mission with wrong information with data set "(['2023-09-15T00:38:09.000000Z', 'vel', 1])"
+ [x] Try create one mission with wrong information with data set "(['2024-10-14T20:09:13.000000Z', 'commodi', 1])"
  [x] Delete one mission
  [x] Try delete a candidate with negative id
  [x] Modify one mission
+ [x] Try modify one mission with negative id
 
 /home/ubuntu/dev/talent-tracker/tests/Feature/ModelTest.php
- [x] Mission with data set "(['2024-05-05T23:48:35.000000Z', '2025-02-06T10:31:04.000000Z', 'eos', …])"
- [x] Mission with data set "(['2024-02-11T19:46:41.000000Z', '2024-08-05T20:46:22.000000Z', 'esse', …])"
+ [x] Mission with data set "(['2023-06-04T01:55:30.000000Z', '2024-06-15T14:59:44.000000Z', 'ipsa', …])"
+ [x] Mission with data set "(['2024-04-18T04:52:57.000000Z', '2024-10-10T16:12:25.000000Z', 'perferendis', …])"
  [x] Candidate
 
 /home/ubuntu/dev/talent-tracker/tests/Unit/ExampleTest.php
