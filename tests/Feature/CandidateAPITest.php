@@ -117,13 +117,14 @@ test('Create one candidate ', function (): void {
 test('Try create one candidate with wrong information ', function (array $newCandidateData): void {
 	$response = $this->postJson(
 		URL_BEGIN_CANDIDATE . '/create',
-		[$newCandidateData]
+		['data' => $newCandidateData]
 	);
 
 	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
 	$response->assertJson([
 		'message' => JsonResponse::CREATE_ERROR->value,
 	]);
+	$this->assertDatabaseMissing('candidates', $newCandidateData);
 })->with('Case of error');
 
 test('Modify one candidate ', function (): void {

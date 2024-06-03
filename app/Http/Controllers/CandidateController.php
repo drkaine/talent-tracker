@@ -23,9 +23,9 @@ class CandidateController extends Controller
 	private Candidate $candidate;
 
 	private array $validatorRules = [
-		'candidate' => 'required',
-		'candidate.first_name' => 'string|max:255',
-		'candidate.name' => 'string|max:255',
+		'candidate' => 'required|array',
+		'candidate.first_name' => 'required|string|max:255',
+		'candidate.name' => 'required|string|max:255',
 	];
 
 	public function __construct()
