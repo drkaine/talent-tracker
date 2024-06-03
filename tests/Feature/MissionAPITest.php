@@ -48,7 +48,7 @@ beforeEach(function (): void {
 test('Create one mission ', function (array $newMissionData): void {
 	$response = $this->postJson(
 		URL_BEGIN_MISSION . '/create',
-		['mission' => $newMissionData]
+		['data' => $newMissionData]
 	);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
@@ -59,16 +59,17 @@ test('Create one mission ', function (array $newMissionData): void {
 	$this->assertDatabaseHas('missions', $newMissionData);
 })->with('Case for mission');
 
-test('Try create one mission with wrong information ', function (array $newMissionData): void {
+test('Try create one mission ', function (array $newMissionData): void {
 	$response = $this->postJson(
 		URL_BEGIN_MISSION . '/create',
-		[$newMissionData]
+		['data' => $newMissionData]
 	);
 
 	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
 	$response->assertJson([
 		'message' => JsonResponse::CREATE_ERROR->value,
 	]);
+	$this->assertDatabaseMissing('missions', $newMissionData);
 })->with('Case of error');
 
 test('Delete one mission ', function (): void {
@@ -82,7 +83,7 @@ test('Delete one mission ', function (): void {
 	$this->assertDatabaseMissing('missions', $this->mission);
 });
 
-test('Try delete a candidate with negative id ', function (): void {
+test('Try delete a mission with negative id ', function (): void {
 	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/' . NEGATIVE_ID);
 
 	$response->assertStatus(JsonStatus::NOT_FOUND->value);
@@ -95,7 +96,7 @@ test('Modify one mission ', function (): void {
 
 	$response = $this->patchJson(
 		URL_BEGIN_MISSION . '/update/' . ID,
-		['mission' => $this->updateMissionData]
+		['data' => $this->updateMissionData]
 	);
 
 	$response->assertStatus(JsonStatus::SUCCESS->value);
@@ -110,7 +111,7 @@ test('Modify one mission ', function (): void {
 test('Try modify one mission with negative id ', function (): void {
 	$response = $this->patchJson(
 		URL_BEGIN_MISSION . '/update/' . NEGATIVE_ID,
-		['mission' => $this->updateMissionData]
+		['data' => $this->updateMissionData]
 	);
 
 	$response->assertStatus(JsonStatus::NOT_FOUND->value);

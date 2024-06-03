@@ -19,10 +19,10 @@ class MissionController extends Controller
 	private Mission $mission;
 
 	private array $validatorRules = [
-		'mission' => 'required|array',
-		'mission.start_date' => 'required|date',
-		'mission.end_date' => 'required|date',
-		'mission.title' => 'required|string|max:450',
+		'data' => 'required|array',
+		'data.start_date' => 'required|date|date_format:Y-m-d',
+		'data.end_date' => 'required|date|date_format:Y-m-d',
+		'data.title' => 'required|string|max:450',
 	];
 
 	public function __construct()
@@ -43,10 +43,10 @@ class MissionController extends Controller
 
 		$this->mission->
 			create([
-				'start_date' => $request->mission['start_date'],
-				'end_date' => $request->mission['end_date'],
-				'title' => $request->mission['title'],
-				'candidate_id' => $request->mission['candidate_id'],
+				'start_date' => $request->data['start_date'],
+				'end_date' => $request->data['end_date'],
+				'title' => $request->data['title'],
+				'candidate_id' => $request->data['candidate_id'],
 			]);
 
 		return $this->JsonResponseBuilder(
@@ -60,10 +60,10 @@ class MissionController extends Controller
 		$isUpdate = $this->mission->
 			where('id', $missionId)->
 			update([
-				'start_date' => $request->mission['start_date'],
-				'end_date' => $request->mission['end_date'],
-				'title' => $request->mission['title'],
-				'candidate_id' => $request->mission['candidate_id'],
+				'start_date' => $request->data['start_date'],
+				'end_date' => $request->data['end_date'],
+				'title' => $request->data['title'],
+				'candidate_id' => $request->data['candidate_id'],
 			]);
 
 		if (!$isUpdate) {
