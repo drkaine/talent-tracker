@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
-use App\Enums\JsonResponse as EnumsJsonResponse;
-use App\Enums\JsonStatus;
+use App\Enums\JsonResponseEnum;
+use App\Enums\JsonStatusEnum;
 use App\Models\Mission;
 use App\Traits\JsonResponseTrait;
 use Illuminate\Http\JsonResponse;
@@ -36,8 +36,8 @@ class MissionController extends Controller
 
 		if ($validator->fails()) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::CREATE_ERROR->value,
-				JsonStatus::UNPROCESSABLE->value
+				JsonResponseEnum::CREATE_ERROR->value,
+				JsonStatusEnum::UNPROCESSABLE->value
 			);
 		}
 
@@ -50,8 +50,8 @@ class MissionController extends Controller
 			]);
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::CREATE_MISSION_SUCCESS->value,
-			JsonStatus::SUCCESS->value
+			JsonResponseEnum::CREATE_MISSION_SUCCESS->value,
+			JsonStatusEnum::SUCCESS->value
 		);
 	}
 
@@ -68,14 +68,14 @@ class MissionController extends Controller
 
 		if (!$isUpdate) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::MISSION_NOT_FOUND->value,
-				JsonStatus::NOT_FOUND->value
+				JsonResponseEnum::MISSION_NOT_FOUND->value,
+				JsonStatusEnum::NOT_FOUND->value
 			);
 		}
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::UPDATE_MISSION_SUCCESS->value,
-			JsonStatus::SUCCESS->value
+			JsonResponseEnum::UPDATE_MISSION_SUCCESS->value,
+			JsonStatusEnum::SUCCESS->value
 		);
 	}
 
@@ -87,14 +87,14 @@ class MissionController extends Controller
 
 		if (!$isDelete) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::MISSION_NOT_FOUND->value,
-				JsonStatus::NOT_FOUND->value
+				JsonResponseEnum::MISSION_NOT_FOUND->value,
+				JsonStatusEnum::NOT_FOUND->value
 			);
 		}
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::DELETE_MISSION_SUCCESS->value,
-			JsonStatus::SUCCESS->value
+			JsonResponseEnum::DELETE_MISSION_SUCCESS->value,
+			JsonStatusEnum::SUCCESS->value
 		);
 	}
 }

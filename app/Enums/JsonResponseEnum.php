@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Enums;
 
-enum JsonResponse: string
+enum JsonResponseEnum: string
 {
 	case DELETE_CANDIDATE_SUCCESS = 'Candidate deleted successfully.';
 	case DELETE_MISSION_SUCCESS = 'Mission deleted successfully.';

@@ -2,8 +2,8 @@
 
 declare(strict_types = 1);
 
-use App\Enums\JsonResponse;
-use App\Enums\JsonStatus;
+use App\Enums\JsonResponseEnum;
+use App\Enums\JsonStatusEnum;
 use App\Models\Mission;
 use Carbon\Carbon;
 
@@ -51,9 +51,9 @@ test('Create one mission ', function (array $newMissionData): void {
 		['data' => $newMissionData]
 	);
 
-	$response->assertStatus(JsonStatus::SUCCESS->value);
+	$response->assertStatus(JsonStatusEnum::SUCCESS->value);
 	$response->assertJson([
-		'message' => JsonResponse::CREATE_MISSION_SUCCESS->value,
+		'message' => JsonResponseEnum::CREATE_MISSION_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseHas('missions', $newMissionData);
@@ -65,9 +65,9 @@ test('Try create one mission ', function (array $newMissionData): void {
 		['data' => $newMissionData]
 	);
 
-	$response->assertStatus(JsonStatus::UNPROCESSABLE->value);
+	$response->assertStatus(JsonStatusEnum::UNPROCESSABLE->value);
 	$response->assertJson([
-		'message' => JsonResponse::CREATE_ERROR->value,
+		'message' => JsonResponseEnum::CREATE_ERROR->value,
 	]);
 	$this->assertDatabaseMissing('missions', $newMissionData);
 })->with('Case of error');
@@ -75,9 +75,9 @@ test('Try create one mission ', function (array $newMissionData): void {
 test('Delete one mission ', function (): void {
 	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/' . ID);
 
-	$response->assertStatus(JsonStatus::SUCCESS->value);
+	$response->assertStatus(JsonStatusEnum::SUCCESS->value);
 	$response->assertJson([
-		'message' => JsonResponse::DELETE_MISSION_SUCCESS->value,
+		'message' => JsonResponseEnum::DELETE_MISSION_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseMissing('missions', $this->mission);
@@ -86,9 +86,9 @@ test('Delete one mission ', function (): void {
 test('Try delete a mission with negative id ', function (): void {
 	$response = $this->deleteJson(URL_BEGIN_MISSION . '/delete/' . NEGATIVE_ID);
 
-	$response->assertStatus(JsonStatus::NOT_FOUND->value);
+	$response->assertStatus(JsonStatusEnum::NOT_FOUND->value);
 	$response->assertJson([
-		'message' => JsonResponse::MISSION_NOT_FOUND->value,
+		'message' => JsonResponseEnum::MISSION_NOT_FOUND->value,
 	]);
 });
 
@@ -99,9 +99,9 @@ test('Modify one mission ', function (): void {
 		['data' => $this->updateMissionData]
 	);
 
-	$response->assertStatus(JsonStatus::SUCCESS->value);
+	$response->assertStatus(JsonStatusEnum::SUCCESS->value);
 	$response->assertJson([
-		'message' => JsonResponse::UPDATE_MISSION_SUCCESS->value,
+		'message' => JsonResponseEnum::UPDATE_MISSION_SUCCESS->value,
 	]);
 
 	$this->assertDatabaseMissing('missions', $this->mission);
@@ -114,9 +114,9 @@ test('Try modify one mission with negative id ', function (): void {
 		['data' => $this->updateMissionData]
 	);
 
-	$response->assertStatus(JsonStatus::NOT_FOUND->value);
+	$response->assertStatus(JsonStatusEnum::NOT_FOUND->value);
 	$response->assertJson([
-		'message' => JsonResponse::MISSION_NOT_FOUND->value,
+		'message' => JsonResponseEnum::MISSION_NOT_FOUND->value,
 	]);
 
 	$this->assertDatabaseMissing('missions', $this->updateMissionData);

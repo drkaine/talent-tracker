@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Enums;
 
-enum JsonStatus: int
+enum JsonStatusEnum: int
 {
 	case SUCCESS = 200;
 	case NOT_FOUND = 404;

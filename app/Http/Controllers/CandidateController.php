@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
-use App\Enums\JsonResponse as EnumsJsonResponse;
-use App\Enums\JsonStatus;
+use App\Enums\JsonResponseEnum;
+use App\Enums\JsonStatusEnum;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
 use App\Models\Mission;
@@ -47,8 +47,8 @@ class CandidateController extends Controller
 
 		if ($validator->fails()) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::CREATE_ERROR->value,
-				JsonStatus::UNPROCESSABLE->value
+				JsonResponseEnum::CREATE_ERROR->value,
+				JsonStatusEnum::UNPROCESSABLE->value
 			);
 		}
 
@@ -59,8 +59,8 @@ class CandidateController extends Controller
 			]);
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::CREATE_CANDIDATE_SUCCESS->value,
-			JsonStatus::SUCCESS->value
+			JsonResponseEnum::CREATE_CANDIDATE_SUCCESS->value,
+			JsonStatusEnum::SUCCESS->value
 		);
 	}
 
@@ -90,8 +90,8 @@ class CandidateController extends Controller
 
 		if ($validator->fails()) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::CREATE_ERROR->value,
-				JsonStatus::UNPROCESSABLE->value
+				JsonResponseEnum::CREATE_ERROR->value,
+				JsonStatusEnum::UNPROCESSABLE->value
 			);
 		}
 
@@ -104,14 +104,14 @@ class CandidateController extends Controller
 
 		if (!$isUpdate) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::CANDIDATE_NOT_FOUND->value,
-				JsonStatus::NOT_FOUND->value
+				JsonResponseEnum::CANDIDATE_NOT_FOUND->value,
+				JsonStatusEnum::NOT_FOUND->value
 			);
 		}
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::UPDATE_CANDIDATE_SUCCESS->value,
-			JsonStatus::SUCCESS->value
+			JsonResponseEnum::UPDATE_CANDIDATE_SUCCESS->value,
+			JsonStatusEnum::SUCCESS->value
 		);
 	}
 
@@ -123,8 +123,8 @@ class CandidateController extends Controller
 
 		if (!$isDelete) {
 			return $this->JsonResponseBuilder(
-				EnumsJsonResponse::CANDIDATE_NOT_FOUND->value,
-				JsonStatus::NOT_FOUND->value
+				JsonResponseEnum::CANDIDATE_NOT_FOUND->value,
+				JsonStatusEnum::NOT_FOUND->value
 			);
 		}
 
@@ -132,8 +132,8 @@ class CandidateController extends Controller
 			delete();
 
 		return $this->JsonResponseBuilder(
-			EnumsJsonResponse::DELETE_CANDIDATE_SUCCESS->value,
-			JsonStatus::SUCCESS->value
+			JsonResponseEnum::DELETE_CANDIDATE_SUCCESS->value,
+			JsonStatusEnum::SUCCESS->value
 		);
 	}
 }
